@@ -1,4 +1,6 @@
 ﻿using LovelierJoais.Context;
+using LovelierJoais.Repositories;
+using LovelierJoais.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LovelierJoais
@@ -17,9 +19,14 @@ namespace LovelierJoais
         {
             services.AddControllersWithViews();
 
+            //conecxao com banco de dados
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration
                 .GetConnectionString("DefaultConnection")));
+
+            // Serviço do repository
+            services.AddTransient<IProdutoRepository, ProdutoRepository>();
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

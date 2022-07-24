@@ -53,7 +53,7 @@ namespace LovelierJoais.Migrations
                     Promocao = table.Column<bool>(type: "bit", nullable: false),
                     Estoque = table.Column<int>(type: "int", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    SubCategoriaId = table.Column<int>(type: "int", nullable: false)
+                    SubcategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,8 +65,8 @@ namespace LovelierJoais.Migrations
                         principalColumn: "CategoriaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Produtos_Subcategorias_SubCategoriaId",
-                        column: x => x.SubCategoriaId,
+                        name: "FK_Produtos_Subcategorias_SubcategoriaId",
+                        column: x => x.SubcategoriaId,
                         principalTable: "Subcategorias",
                         principalColumn: "SubcategoriaId",
                         onDelete: ReferentialAction.Cascade);
@@ -78,9 +78,9 @@ namespace LovelierJoais.Migrations
                 column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_SubCategoriaId",
+                name: "IX_Produtos_SubcategoriaId",
                 table: "Produtos",
-                column: "SubCategoriaId");
+                column: "SubcategoriaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

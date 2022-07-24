@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LovelierJoais.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220723152949_MigracaoInicial")]
+    [Migration("20220723160556_MigracaoInicial")]
     partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,14 +92,14 @@ namespace LovelierJoais.Migrations
                     b.Property<bool>("Promocao")
                         .HasColumnType("bit");
 
-                    b.Property<int>("SubCategoriaId")
+                    b.Property<int>("SubcategoriaId")
                         .HasColumnType("int");
 
                     b.HasKey("ProdutoId");
 
                     b.HasIndex("CategoriaId");
 
-                    b.HasIndex("SubCategoriaId");
+                    b.HasIndex("SubcategoriaId");
 
                     b.ToTable("Produtos");
                 });
@@ -140,7 +140,7 @@ namespace LovelierJoais.Migrations
 
                     b.HasOne("LovelierJoais.Models.Subcategoria", "Subcategoria")
                         .WithMany("Produtos")
-                        .HasForeignKey("SubCategoriaId")
+                        .HasForeignKey("SubcategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
