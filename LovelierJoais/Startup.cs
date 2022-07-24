@@ -1,4 +1,5 @@
 ﻿using LovelierJoais.Context;
+using LovelierJoais.Models;
 using LovelierJoais.Repositories;
 using LovelierJoais.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -27,11 +28,26 @@ namespace LovelierJoais
             // Serviço do repository
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+
+            //Habilitando memoria cache
+            services.AddMemoryCache();
+
+            //Habilitando Session
+            services.AddSession();
+
+            //Serviço para acessar recurso do HTTPContext
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //Registrando serviço class carrinho de compra
+            services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Habilitando o Session
+            app.UseSession();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,6 +71,8 @@ namespace LovelierJoais
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }
