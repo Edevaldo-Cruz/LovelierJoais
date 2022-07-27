@@ -44,7 +44,7 @@ namespace LovelierJoais.Migrations
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("CarrinhoCompraItem");
+                    b.ToTable("CarrinhoCompraItem", (string)null);
                 });
 
             modelBuilder.Entity("LovelierJoais.Models.Categoria", b =>
@@ -70,7 +70,7 @@ namespace LovelierJoais.Migrations
 
                     b.HasKey("CategoriaId");
 
-                    b.ToTable("Categorias");
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("LovelierJoais.Models.Produto", b =>
@@ -125,7 +125,7 @@ namespace LovelierJoais.Migrations
 
                     b.HasIndex("SubcategoriaId");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Produtos", (string)null);
                 });
 
             modelBuilder.Entity("LovelierJoais.Models.Subcategoria", b =>
@@ -151,7 +151,7 @@ namespace LovelierJoais.Migrations
 
                     b.HasKey("SubcategoriaId");
 
-                    b.ToTable("Subcategorias");
+                    b.ToTable("Subcategorias", (string)null);
                 });
 
             modelBuilder.Entity("LovelierJoais.Models.CarrinhoCompraItem", b =>

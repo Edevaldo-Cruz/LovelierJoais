@@ -21,7 +21,7 @@
                     </div>
                 </td>
                 <td>
-                    <div style="margin-bottom: 50px" ;>
+                    <div style="margin-bottom: 50px">
                         <a> <img src="~/images/arrowDown.png" width="25" height="25" alt="icone seta acesse sua conta" /> </a>
                     </div>
                 <td>
@@ -83,6 +83,7 @@
                     <td>
                         <a class="dropdown-item" href="#">
                             <img src="~/images/bag.png" width="35" height="35" />
+                            @await Component.InvokeAsync("CarrinhoCompraResumo")
                         </a>
                     </td>
                 </tr>

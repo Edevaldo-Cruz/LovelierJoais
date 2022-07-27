@@ -1,8 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Bom gosto em Joias";
 }
+<div class="container">
+    <h3>Titulo Destaque</h3>
+    <div class="row">
+        @foreach (var produto in Model.Destaque)
+        {
+            <div class="col">
+                <partial name="_ProdutosResumo" for="@produto" />
+            </div>
+        }
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<h3>Titulo promoção</h3>
+<div class="row">
+    @foreach (var produto in Model.Promocao)
+    {
+        <div class="col">
+            <partial name="_ProdutosResumo" for="@produto" />
+        </div>
+    }
+</div>
+
+
+

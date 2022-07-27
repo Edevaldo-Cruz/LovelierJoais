@@ -7,21 +7,25 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LovelierJoais.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+
+    @if (IsSectionDefined("Styles"))
+    {
+        @RenderSection("Styles", false)
+    }
 </head>
-<body>
+<body style="background-color: #FFF2F2">
     <header>
        @await Html.PartialAsync("_NavBar")
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3"style="margin-bottom: 750px">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - LovelierJoais - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer class="border-top footer text-muted" style="margin-top: 15px">
+        @await Html.PartialAsync("_Footer")
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
