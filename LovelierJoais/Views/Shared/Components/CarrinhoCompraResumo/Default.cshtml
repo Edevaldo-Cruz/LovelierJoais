@@ -1,11 +1,31 @@
 ﻿@model CarrinhoCompraViewModel
 
-@if(Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
-{
-    <a asp-controller="CarrinhoCompra" asp-action="Index">
-        <span><img src="~/images/bag.png" /></span>
-        <span style="color: white">
-            @Model.CarrinhoCompra.CarrinhoCompraItems.Count
-        </span>
-    </a>
-}
+<a asp-controller="CarrinhoCompra" asp-action="Index">
+    <div class="row">
+        <div class="col" style="padding: 0px">
+            <span><img src="~/images/bag.png" style="padding: 0px" /></span>
+        </div>
+        @if (Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
+        {
+            <div class="col" style="padding: 0px; margin-left: -15px; margin-top: 18px">
+                <span style="color: white">
+                    <div style="width: 30px; height: 30px; background-color:#7E2228; border-radius: 15px;">
+                        <div style="text-align:center">
+                            @if(Model.CarrinhoCompra.CarrinhoCompraItems.Count > 9)
+                            {
+                            <b>+9</b>
+                            }
+                            else
+                            {
+                            <b>
+                                @Model.CarrinhoCompra.CarrinhoCompraItems.Count                                
+                            </b>
+
+                            }
+                        </div>
+                    </div>
+                </span>
+            </div>
+        }
+    </div>
+</a>

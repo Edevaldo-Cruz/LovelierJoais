@@ -7,26 +7,24 @@
             <h4>Seu carrinho de compras: </h4>
         </div>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" style="border-color: #7E2228">
 
-            <thead>
-                @*Cabeçalho da tabela*@
+            <thead>               
                 <tr>
-                    <th>Quantidade</th>
                     <th>Produto</th>
                     <th class="text-right">Preço</th>
+                    <th>Quantidade</th>
                     <th class="text-right">Subtotal</th>
-                    <th></th>
+
                 </tr>
             </thead>
-            <tbody>
-                @*Corpo da tabela*@
+            <tbody>               
                 @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItems)
                 {
                     <tr>
-                        <td class="text-center">@item.Quantidade</td>
                         <td class="text-left">@item.Produto.Nome</td>
                         <td class="text-right">@item.Produto.Preco.ToString("c")</td>
+                        <td class="text-center">@item.Quantidade</td>
 
                         <td class="text-right">
                             @((item.Quantidade * item.Produto.Preco).ToString("c"))
@@ -41,8 +39,7 @@
                     </tr>
                 }
             </tbody>
-            <tfoot>
-                @*Rodapé da tabela*@
+            <tfoot>               
                 <tr>
                     <td colspan="3" class="text-right">Total:</td>
                     <td class="text-right">
@@ -53,10 +50,10 @@
         </table>
 
         <div class="text-right">
-            <div class="btn-group">
-                <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>
+            <div class="btn-group">                
+                    <a class="btn btn-success" style="width: 150px; background-color: #7E2228; border-radius: 26px; border: none" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>               
                 &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-primary" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
+                <a class="btn btn-primary" style="width: 190px; background-color: #F2C4C4; border-radius: 26px; border: none" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
             </div>
 
         </div>

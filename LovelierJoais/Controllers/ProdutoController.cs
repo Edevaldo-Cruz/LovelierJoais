@@ -1,4 +1,5 @@
-﻿using LovelierJoais.Repositories.Interfaces;
+﻿using LovelierJoais.Models;
+using LovelierJoais.Repositories.Interfaces;
 using LovelierJoais.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,16 +14,51 @@ namespace LovelierJoais.Controllers
             _produtoRepository = produtoRepository;
         }
 
-        public IActionResult List()
+        public IActionResult List(string categoria)
         {
-            //var produtos = _produtoRepository.Produtos;
-            //return View(produtos);
+            IEnumerable<Produto> produtos;
+            string categoriaAtual = string.Empty;
 
-            var produtosListViewModel = new ProdutoListViewModel();
-            produtosListViewModel.Produtos = _produtoRepository.Produtos;
-            produtosListViewModel.CategoriaAtual = "Categoria Atual";
+            // Se a variavel categoria estiver null ou vazia
+            if (string.IsNullOrEmpty(categoria))
+            {
+                // Retorna todos os lanches ordenado pelo id.
+                produtos = (IEnumerable<Produto>)_produtoRepository.Produtos.OrderBy(l => l.ProdutoId);
+                categoriaAtual = "Todos os Produtos";
+            }
+            else
+            {
+                //Se a variavel categoria for igual a Normal 
+                if (string.Equals("Prata", categoria, StringComparison.OrdinalIgnoreCase))
+                {
+                    //Filtra e retorna lanches normais
+                    produtos = _produtoRepository.Produtos
+                    .Where(l => l.Categoria.CategoriaNome.Equals("Prata"))
+                    .OrderBy(l => l.ProdutoId);
+                }
+                else
+                {
+                    //Filtra e retorna lanches naturais
+                    produtos = _produtoRepository.Produtos
+                    .Where(l => l.Categoria.CategoriaNome.Equals("Folheado"))
+                    .OrderBy(l => l.ProdutoId);
+                }
+                categoriaAtual = categoria;
+            }
 
-            return View(produtosListViewModel);
+            var lancheListViewModel = new ProdutoListViewModel
+            {
+                Produtos = produtos,
+                CategoriaAtual = categoriaAtual,
+            };
+
+            return View(lancheListViewModel);
+        }
+
+        public IActionResult Details(int produtoId)
+        {
+            var lanche = _produtoRepository.Produtos.FirstOrDefault(l => l.ProdutoId == produtoId);
+            return View(lanche);
         }
     }
 }
