@@ -9,9 +9,13 @@ namespace LovelierJoais.Controllers
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoController(IProdutoRepository produtoRepository)
+        private readonly ICategoriaRepository _categoriaRepository;
+
+        public ProdutoController(IProdutoRepository produtoRepository,
+                                ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public IActionResult List(string categoria)
@@ -46,19 +50,20 @@ namespace LovelierJoais.Controllers
                 categoriaAtual = categoria;
             }
 
-            var lancheListViewModel = new ProdutoListViewModel
+            var ProdutoListViewModel = new ProdutoListViewModel
             {
                 Produtos = produtos,
                 CategoriaAtual = categoriaAtual,
+                Categorias = _categoriaRepository.Categorias
             };
 
-            return View(lancheListViewModel);
+            return View(ProdutoListViewModel);
         }
 
         public IActionResult Details(int produtoId)
         {
-            var lanche = _produtoRepository.Produtos.FirstOrDefault(l => l.ProdutoId == produtoId);
-            return View(lanche);
+            var produto = _produtoRepository.Produtos.FirstOrDefault(l => l.ProdutoId == produtoId);
+            return View(produto);
         }
     }
 }

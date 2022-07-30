@@ -7,12 +7,16 @@ namespace LovelierJoais.Controllers
 {
     public class CarrinhoCompraController : Controller
     {
-        private readonly IProdutoRepository _produtoRepository;
+        private readonly IProdutoRepository _produtoRepository; 
+        private readonly ICategoriaRepository _categoriaRepository;
         private readonly CarrinhoCompra _carrinhoCompra;
 
-        public CarrinhoCompraController(IProdutoRepository produtoRepository, CarrinhoCompra carrinhoCompra)
+        public CarrinhoCompraController(IProdutoRepository produtoRepository, 
+                                        ICategoriaRepository categoriaRepository, 
+                                        CarrinhoCompra carrinhoCompra)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
             _carrinhoCompra = carrinhoCompra;
         }
 
@@ -24,7 +28,8 @@ namespace LovelierJoais.Controllers
             var carrinhoCompraVM = new CarrinhoCompraViewModel
             {
                 CarrinhoCompra = _carrinhoCompra,
-                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal(),
+                Categorias = _categoriaRepository.Categorias,
+                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal()                
             };
 
             return View(carrinhoCompraVM);

@@ -1,4 +1,5 @@
 ﻿using LovelierJoais.Models;
+using LovelierJoais.Repositories.Interfaces;
 
 namespace LovelierJoais.ViewModel
 {
@@ -6,5 +7,8 @@ namespace LovelierJoais.ViewModel
     {
         public CarrinhoCompra CarrinhoCompra { get; set; }
         public decimal CarrinhoCompraTotal { get; set; }
+        // public ICategoriaRepository Categorias { get; internal set; }
+
+        public IEnumerable<Categoria> Categorias { get; set; }
     }
 }

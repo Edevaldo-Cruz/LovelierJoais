@@ -10,9 +10,12 @@ namespace LovelierJoais.Controllers
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public HomeController(IProdutoRepository produtoRepository)
+        private readonly ICategoriaRepository _categoriaRepository;
+
+        public HomeController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public IActionResult Index()
@@ -20,7 +23,9 @@ namespace LovelierJoais.Controllers
             var homeViewModel = new HomeViewModel
             {
                 Promocao = _produtoRepository.ProdutoPromocao,
-                Destaque = _produtoRepository.ProdutoDestaque                
+                Destaque = _produtoRepository.ProdutoDestaque, 
+                Categorias = _categoriaRepository.Categorias
+               
             };
             ViewBag.Produtos = _produtoRepository.ProdutoDestaque.ToList();
             return View(homeViewModel);

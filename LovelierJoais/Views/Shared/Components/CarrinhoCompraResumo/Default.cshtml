@@ -2,22 +2,25 @@
 
 <a asp-controller="CarrinhoCompra" asp-action="Index">
     <div class="row">
-        <div class="col" style="padding: 0px">
-            <span><img src="~/images/bag.png" style="padding: 0px" /></span>
+        <div class="col paddingzero">
+            <span class="paddingzero">
+                <img class="paddingzero" 
+                     src="~/images/bag.png" width="35" height="35"/>
+            </span>
         </div>
         @if (Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
         {
-            <div class="col" style="padding: 0px; margin-left: -15px; margin-top: 18px">
-                <span style="color: white">
-                    <div style="width: 30px; height: 30px; background-color:#7E2228; border-radius: 15px;">
-                        <div style="text-align:center">
+            <div class="col car-div">
+                <span>
+                    <div class="car-div-conteudo">
+                        <div class="car-texto-centro">
                             @if(Model.CarrinhoCompra.CarrinhoCompraItems.Count > 9)
                             {
-                            <b>+9</b>
+                            <b class="texto-padrao">+9</b>
                             }
                             else
                             {
-                            <b>
+                            <b class="texto-padrao">
                                 @Model.CarrinhoCompra.CarrinhoCompraItems.Count                                
                             </b>
 

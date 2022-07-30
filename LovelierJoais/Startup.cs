@@ -28,6 +28,7 @@ namespace LovelierJoais
             // Serviço do repository
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<ISubcategoriaRepository, SubcategoriaRepository>();
 
             //Habilitando memoria cache
             services.AddMemoryCache();

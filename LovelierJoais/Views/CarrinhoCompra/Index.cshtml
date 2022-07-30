@@ -1,15 +1,14 @@
 ﻿@model CarrinhoCompraViewModel
-
 <div class="container">
     <div class="row">
-        <img src="~/images/Full-Cart-icon.png" width="20px" height="20px" />
+
         <div>
             <h4>Seu carrinho de compras: </h4>
         </div>
 
-        <table class="table table-bordered table-striped" style="border-color: #7E2228">
+        <table class="table table-bordered table-striped car-borda">
 
-            <thead>               
+            <thead>
                 <tr>
                     <th>Produto</th>
                     <th class="text-right">Preço</th>
@@ -18,7 +17,7 @@
 
                 </tr>
             </thead>
-            <tbody>               
+            <tbody>
                 @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItems)
                 {
                     <tr>
@@ -39,7 +38,7 @@
                     </tr>
                 }
             </tbody>
-            <tfoot>               
+            <tfoot>
                 <tr>
                     <td colspan="3" class="text-right">Total:</td>
                     <td class="text-right">
@@ -50,10 +49,14 @@
         </table>
 
         <div class="text-right">
-            <div class="btn-group">                
-                    <a class="btn btn-success" style="width: 150px; background-color: #7E2228; border-radius: 26px; border: none" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>               
+            <div class="btn-group">
+                <div>
+                    <a class="btn btn-success car-botao-encerrar" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>
+                </div>
                 &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-primary" style="width: 190px; background-color: #F2C4C4; border-radius: 26px; border: none" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
+                <div>
+                    <a class="btn btn-primary car-botao-continuar" asp-controller="Produto" asp-action="List">Continuar Comprando</a>
+                </div>
             </div>
 
         </div>

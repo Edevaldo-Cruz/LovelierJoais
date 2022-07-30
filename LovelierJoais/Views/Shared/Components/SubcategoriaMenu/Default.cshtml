@@ -1,0 +1,29 @@
+﻿<div class="dropdown">
+
+    <a type="button" class="texto-padrao" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="~/images/menu.png" width="35" height="35" />
+        <b>Categoria</b>
+    </a>
+
+    <ul class="dropdown-menu drop-cor">
+        @foreach (var subcategoria in Model)
+        {
+            <li>
+                <a class="dropdown-item" 
+                    asp-controller="Produto"                                         
+                    asp-action="List"                                                           
+                    asp-route-categoria="@subcategoria.SubcategoriaNome">
+                    <b>
+                        @subcategoria.SubcategoriaNome
+                    </b>
+                </a>
+            </li>
+        }
+        <li class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item" asp-controller="Produto" asp-action="List" asp-route-categoria=""
+               style="color:black">Todos os Produtos</a>
+        </li>
+    </ul>
+
+</div>

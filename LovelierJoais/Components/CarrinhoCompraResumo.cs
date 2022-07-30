@@ -16,7 +16,7 @@ namespace LovelierJoais.Components
         public IViewComponentResult Invoke()
         {
             //var itens = _carrinhoCompra.GetCarrinhoCompraItems();
-            
+
             //Codigo para testar 
             var itens = new List<CarrinhoCompraItem>()
             {
