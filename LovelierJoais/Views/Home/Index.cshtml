@@ -4,31 +4,58 @@
 }
 
 <div class="ban-div">
-    <img src=@ViewBag.BannerAliatorio />   
+    <img src=@ViewBag.BannerAliatorio width="1300px" height="500"/>
 </div>
 
 <hr />
 <div class="container">
     <h3>Titulo Destaque</h3>
-    <div class="row">
-        @foreach (var produto in Model.Destaque)
-        {
-            <div class="col">
-                <partial name="_ProdutosResumo" for="@produto" />
-            </div>
-        }
-    </div>
-</div>
-<hr />
-<h3>Titulo promoção</h3>
-<div class="row">
-    @foreach (var produto in Model.Promocao)
-    {
-        <div class="col">
-            <partial name="_ProdutosResumo" for="@produto" />
+    <article class="c-carousel">
+        <div class="c-carousel_slides js-carousel--simple">
+            @foreach (var produto in Model.Destaque)
+            {
+                <div>
+                    <partial name="_ProdutosResumo" for="@produto" />
+                </div>
+            }
         </div>
-    }
+        <div class="row slide-div">
+            <div class="col">
+                <button class="float-start js-carousel--simple-prev slide-button" aria-label="Previous">«</button>
+            </div>
+            <div class="col slide-button-direito">
+                <button class="float-end js-carousel--simple-next slide-button" aria-label="Next">»</button>
+            </div>
+        </div>
+    </article>
+
+    <hr />
+    <h3>Titulo promoção</h3>
+    <article class="c-carousel">
+        <div class="c-carousel_slides js-carousel--promocao">
+            @foreach (var produto in Model.Promocao)
+            {
+                <div>
+                    <partial name="_ProdutosResumo" for="@produto" />
+                </div>
+            }
+        </div>
+        <div class="row slide-div">
+            <div class="col">
+                <button class="float-start js-carousel--pro-prev slide-button" aria-label="Previous">«</button>
+            </div>
+            <div class="col slide-button-direito">
+                <button class="float-end js-carousel--pro-next slide-button" aria-label="Next">»</button>
+            </div>
+        </div>
+    </article>
 </div>
+
+
+
+
+
+
 
 
 

@@ -14,5 +14,8 @@ namespace LovelierJoais.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<CarrinhoCompraItem> CarrinhoCompraItem { get; set; }
 
+        public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<PedidoDetalhe> PedidoDetalhe { get; set; }
+
     }
 }

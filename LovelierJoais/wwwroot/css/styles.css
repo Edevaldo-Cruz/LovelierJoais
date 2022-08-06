@@ -116,7 +116,7 @@ a:hover {
         background-color: #8C6C65
     }
 
-    /*Dropdown*/
+/*Dropdown*/
 
 .drop-cor {
     width: 300px;
@@ -129,6 +129,42 @@ a:hover {
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+/*Slide*/
+
+.slide-div {
+    position: relative;
+    bottom: 300px;
+    z-index: 1
+}
+
+.slide-button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+    color: #7E2228;
+    font-size: 90px;
+}
+
+.slide-button-direito {
+    position: relative;
+    right: 30px
+}
+
+/*Card*/
+
+.card-div {
+    margin-top: 30px;
+    margin-right: 10px;
+    
+}
+
+.car-conteudo {
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 

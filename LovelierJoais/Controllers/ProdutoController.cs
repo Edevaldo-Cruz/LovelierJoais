@@ -26,7 +26,7 @@ namespace LovelierJoais.Controllers
             // Se a variavel categoria estiver null ou vazia
             if (string.IsNullOrEmpty(subcategoria))
             {
-                // Retorna todos os lanches ordenado pelo id.
+                
                 produtos = (IEnumerable<Produto>)_produtoRepository.Produtos.OrderBy(l => l.ProdutoId);
                 subcategoriaAtual = "Todos os Produtos";
             }
@@ -40,8 +40,7 @@ namespace LovelierJoais.Controllers
                     .OrderBy(l => l.ProdutoId);
                 }
                 else
-                {
-                    //Filtra e retorna lanches naturais
+                {                  
                     produtos = _produtoRepository.Produtos
                     .Where(p => p.SubcategoriaId == 2)
                     .OrderBy(l => l.ProdutoId);
@@ -70,6 +69,35 @@ namespace LovelierJoais.Controllers
             return View(ProdutoListViewModel);
         }
 
+        public ViewResult Search(string searchString)
+        {
+            IEnumerable<Produto> produtos;
+            string categoriaAtual = string.Empty;
+
+            if (string.IsNullOrEmpty(searchString))
+            {
+                produtos = _produtoRepository.Produtos.OrderBy(p => p.ProdutoId);
+                categoriaAtual = "Todos os produtos";
+            }
+            else
+            {
+                produtos = _produtoRepository.Produtos
+                            .Where(p => p.Nome.ToLower().Contains(searchString.ToLower()));
+
+                if (produtos.Any())
+                    categoriaAtual = "Produtos";
+                else
+                    categoriaAtual = "Nenhum produto foi encontrado";
+
+            }
+
+            return View("~/Views/Produto/List.cshtml", new ProdutoListViewModel
+            {
+                Produtos = produtos,
+                CategoriaAtual = categoriaAtual,
+                Categorias = _categoriaRepository.Categorias
+            });
+        }
 
     }
 }
