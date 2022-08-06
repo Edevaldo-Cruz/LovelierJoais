@@ -38,7 +38,7 @@ namespace LovelierJoais.Controllers
         public IActionResult AdicionarItemNoCarrinho(int produtoId)
         {
             var produtoSelecionado = _produtoRepository.Produtos
-                                .FirstOrDefault(p => p.ProdutoId == produtoId);
+                                     .FirstOrDefault(p => p.ProdutoId == produtoId);
 
             if (produtoSelecionado != null)
             {

@@ -20,12 +20,21 @@ namespace LovelierJoais.Controllers
 
         public IActionResult Index()
         {
+            string[] banners = {
+                "/images/banner1.png",
+                "/images/banner2.png",
+                "/images/banner3.png",
+                "/images/banner4.png",               
+            };
+            var rnd = new Random();
+            int index = rnd.Next(banners.Length);
+            ViewBag.BannerAliatorio = banners[index];
+
             var homeViewModel = new HomeViewModel
             {
                 Promocao = _produtoRepository.ProdutoPromocao,
-                Destaque = _produtoRepository.ProdutoDestaque, 
+                Destaque = _produtoRepository.ProdutoDestaque,
                 Categorias = _categoriaRepository.Categorias
-               
             };
             ViewBag.Produtos = _produtoRepository.ProdutoDestaque.ToList();
             return View(homeViewModel);

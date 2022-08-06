@@ -2,6 +2,12 @@
 @{
     ViewData["Title"] = "Bom gosto em Joias";
 }
+
+<div class="ban-div">
+    <img src=@ViewBag.BannerAliatorio />   
+</div>
+
+<hr />
 <div class="container">
     <h3>Titulo Destaque</h3>
     <div class="row">
@@ -12,8 +18,8 @@
             </div>
         }
     </div>
-
 </div>
+<hr />
 <h3>Titulo promoção</h3>
 <div class="row">
     @foreach (var produto in Model.Promocao)

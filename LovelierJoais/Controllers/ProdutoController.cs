@@ -8,52 +8,51 @@ namespace LovelierJoais.Controllers
     public class ProdutoController : Controller
     {
         private readonly IProdutoRepository _produtoRepository;
-
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly ISubcategoriaRepository _subcategoriaRepository;
 
-        public ProdutoController(IProdutoRepository produtoRepository,
-                                ICategoriaRepository categoriaRepository)
+        public ProdutoController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository, ISubcategoriaRepository subcategoriaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;
+            _subcategoriaRepository = subcategoriaRepository;
         }
 
-        public IActionResult List(string categoria)
+        public IActionResult List(string subcategoria)
         {
             IEnumerable<Produto> produtos;
-            string categoriaAtual = string.Empty;
+            string subcategoriaAtual = string.Empty;
 
             // Se a variavel categoria estiver null ou vazia
-            if (string.IsNullOrEmpty(categoria))
+            if (string.IsNullOrEmpty(subcategoria))
             {
                 // Retorna todos os lanches ordenado pelo id.
                 produtos = (IEnumerable<Produto>)_produtoRepository.Produtos.OrderBy(l => l.ProdutoId);
-                categoriaAtual = "Todos os Produtos";
+                subcategoriaAtual = "Todos os Produtos";
             }
             else
             {
                 //Se a variavel categoria for igual a Normal 
-                if (string.Equals("Prata", categoria, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals("1", subcategoria, StringComparison.OrdinalIgnoreCase))
                 {
-                    //Filtra e retorna lanches normais
                     produtos = _produtoRepository.Produtos
-                    .Where(l => l.Categoria.CategoriaNome.Equals("Prata"))
+                    .Where(p => p.SubcategoriaId == 1)
                     .OrderBy(l => l.ProdutoId);
                 }
                 else
                 {
                     //Filtra e retorna lanches naturais
                     produtos = _produtoRepository.Produtos
-                    .Where(l => l.Categoria.CategoriaNome.Equals("Folheado"))
+                    .Where(p => p.SubcategoriaId == 2)
                     .OrderBy(l => l.ProdutoId);
                 }
-                categoriaAtual = categoria;
+                subcategoriaAtual = subcategoria;
             }
 
             var ProdutoListViewModel = new ProdutoListViewModel
             {
                 Produtos = produtos,
-                CategoriaAtual = categoriaAtual,
+                CategoriaAtual = subcategoriaAtual,
                 Categorias = _categoriaRepository.Categorias
             };
 
@@ -62,8 +61,16 @@ namespace LovelierJoais.Controllers
 
         public IActionResult Details(int produtoId)
         {
-            var produto = _produtoRepository.Produtos.FirstOrDefault(l => l.ProdutoId == produtoId);
-            return View(produto);
+            var selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+            var ProdutoListViewModel = new ProdutoListViewModel
+            {               
+                Categorias = _categoriaRepository.Categorias
+            };            
+            ViewBag.Selecionado = selecionado;
+            return View(ProdutoListViewModel);
         }
+
+
     }
 }
+

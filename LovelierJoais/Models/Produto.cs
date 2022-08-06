@@ -50,5 +50,6 @@ namespace LovelierJoais.Models
 
         public virtual Categoria Categoria { get; set; }
         public virtual Subcategoria Subcategoria { get; set; }
+        
     }
 }
