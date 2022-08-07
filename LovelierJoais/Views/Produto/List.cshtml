@@ -1,18 +1,29 @@
 ﻿@model ProdutoListViewModel
-
-<div class="row" style="margin-top: 50px">
+<div class="row  card-div">
     @foreach (var item in Model.Produtos)
     {
-        <button class="card" style="width: 18rem; margin-right: 20px">
-            <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.ImagemUrl)" alt="Card image cap">
-            <div class="card-body">
-                <b class="card-title float-start" style="color: #806F71">@Html.DisplayFor(modelItem => item.Nome)</b>
-                <p class="card-text float-start" style="color: #806F71; font-size: 14px; margin: 10px">@Html.DisplayFor(modelItem => item.DescricaoCurta)</p>
-                <div class="float-end">
-                    <b class="card-text" style="color: #806F71">@Html.DisplayFor(modelItem => item.Preco)</b>     
+       <div class="col card-div">
+            <a asp-controller="Produto" asp-action="Details" asp-route-produtoId="@Model.ProdutoId"
+           class="card card-conteudo">
+                <div class="card-div-img">
+                    <img class="card-img-top card-conteudo" src="@Html.DisplayFor(modelItem => item.ImagemUrl)" alt="Card image cap">
                 </div>
-            </div>
-        </button>        
+
+                <div class="card-body card-div-info">
+                    <div class="card-div-titulo">
+                        <b class="card-title float-start card-cor-texto">@Html.DisplayFor(modelItem => item.Nome)</b>
+                    </div>
+                    <div class="card-div-descricao">
+                        <p class="card-text float-start card-descricao">@Html.DisplayFor(modelItem => item.DescricaoCurta)</p>
+                    </div>
+                    <div class="float-end">
+                        <b class="card-text card-cor-texto">@Html.DisplayFor(modelItem => item.Preco)</b>
+                    </div>
+                </div>
+            </a>
+
+        </div>    
     }
-    
 </div>
+    
+    

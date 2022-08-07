@@ -1,4 +1,4 @@
-﻿<div class="nav-div">
+﻿<nav class="nav-fixo ">
     <div class="container">
         <table>
             <tr>
@@ -87,5 +87,17 @@
         </table>
 
     </div>
-</div>
+</nav>
+
+<script>
+    var nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 500) {
+            nav.classList.add('nav-div', 'shadow');
+        } else {
+            nav.classList.remove('nav-div', 'shadow');
+        }
+    });
+</script>
 

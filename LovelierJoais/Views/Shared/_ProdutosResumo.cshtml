@@ -2,19 +2,19 @@
 
 <div class="col card-div">
     <a asp-controller="Produto" asp-action="Details" asp-route-produtoId="@Model.ProdutoId"
-       class="card">
-        <div class=" card-conteudo" style="width: 288px; height: 288px">
-            <img class="card-img-top" src="@Html.DisplayFor(modelItem => Model.ImagemUrl)" alt="Card image cap">
+       class="card card-conteudo">
+        <div class="card-div-img">
+            <img class="card-img-top card-conteudo" src="@Html.DisplayFor(modelItem => Model.ImagemUrl)" alt="Card image cap">
         </div>
-        <div class="card-body" style="width: 288px; height: 150px">
-            <div style="background-color: aquamarine; width: 255px; height: 45px">
-                <b class="card-title float-start" style="background-color: palevioletred; color: #806F71">@Html.DisplayFor(modelItem => Model.Nome)</b>
+        <div class="card-body card-div-info">
+            <div class="card-div-titulo">
+                <b class="card-title float-start card-cor-texto">@Html.DisplayFor(modelItem => Model.Nome)</b>
             </div>
-            <div style="background-color: cadetblue; width: 255px; height: 60px">
-                <p class="card-text float-start" style="color: #806F71; font-size: 14px; margin: 10px">@Html.DisplayFor(modelItem => Model.DescricaoCurta)</p>
+            <div class="card-div-descricao">
+                <p class="card-text float-start card-descricao">@Html.DisplayFor(modelItem => Model.DescricaoCurta)</p>
             </div>
             <div class="float-end">
-                <b class="card-text" style="color: #806F71">@Html.DisplayFor(modelItem => Model.Preco)</b>
+                <b class="card-text card-cor-texto">@Html.DisplayFor(modelItem => Model.Preco)</b>
             </div>
         </div>
     </a>
