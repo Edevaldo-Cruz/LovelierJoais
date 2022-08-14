@@ -34,9 +34,11 @@ namespace LovelierJoais.Controllers
             {
                 Promocao = _produtoRepository.ProdutoPromocao,
                 Destaque = _produtoRepository.ProdutoDestaque,
-                Categorias = _categoriaRepository.Categorias
+                //Categorias = _categoriaRepository.Categorias
             };
             ViewBag.Produtos = _produtoRepository.ProdutoDestaque.ToList();
+            ViewBag.Categorias = _categoriaRepository.Categorias;
+            ViewBag.Scroll = "on";
             return View(homeViewModel);
         }
 

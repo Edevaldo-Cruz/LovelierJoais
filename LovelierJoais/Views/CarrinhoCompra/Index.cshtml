@@ -1,6 +1,9 @@
 ﻿@model CarrinhoCompraViewModel
+@{
+    Layout = "_LayoutSecundario";
+}
 <div class="container">
-    <div class="row">
+    <div class="row div-top-padrao">
 
         <div>
             <h4>Seu carrinho de compras: </h4>
@@ -30,9 +33,10 @@
                         </td>
 
                         <td class="text-center">
-                            <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDocarrinhoCompra"
-                           asp-route-lancheId="@item.Produto.ProdutoId">
-                                <img src="~/images/delete.png" />
+                            <a asp-controller="CarrinhoCompra" 
+                               asp-action="RemoverItemDoCarrinhoCompra"
+                               asp-route-produtoId="@item.Produto.ProdutoId">
+                                <img src="~/images/delete.png" width="20" height="20" />
                             </a>
                         </td>
                     </tr>

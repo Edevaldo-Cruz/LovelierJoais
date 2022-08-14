@@ -15,15 +15,18 @@ namespace LovelierJoais.Components
 
         public IViewComponentResult Invoke()
         {
-            //var itens = _carrinhoCompra.GetCarrinhoCompraItems();
+            var itens = _carrinhoCompra.GetCarrinhoCompraItens();
 
             //Codigo para testar 
-            var itens = new List<CarrinhoCompraItem>()
-            {
-                new CarrinhoCompraItem(),
-                new CarrinhoCompraItem()
-            };
-            _carrinhoCompra.CarrinhoCompraItems = itens;
+            //var itens = new List<CarrinhoCompraItem>()
+            //{
+            //    new CarrinhoCompraItem(),
+            //    new CarrinhoCompraItem()
+            //};
+
+            
+             _carrinhoCompra.CarrinhoCompraItems = itens;
+
 
             var carrinhoCompraVM = new CarrinhoCompraViewModel
             {

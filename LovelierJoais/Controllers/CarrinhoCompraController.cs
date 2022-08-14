@@ -2,17 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using LovelierJoais.Models;
 using LovelierJoais.ViewModel;
+using Newtonsoft.Json;
 
 namespace LovelierJoais.Controllers
 {
     public class CarrinhoCompraController : Controller
     {
-        private readonly IProdutoRepository _produtoRepository; 
+        private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
         private readonly CarrinhoCompra _carrinhoCompra;
 
-        public CarrinhoCompraController(IProdutoRepository produtoRepository, 
-                                        ICategoriaRepository categoriaRepository, 
+        public CarrinhoCompraController(IProdutoRepository produtoRepository,
+                                        ICategoriaRepository categoriaRepository,
                                         CarrinhoCompra carrinhoCompra)
         {
             _produtoRepository = produtoRepository;
@@ -22,20 +23,24 @@ namespace LovelierJoais.Controllers
 
         public IActionResult Index()
         {
-            var itens = _carrinhoCompra.GetCarrinhoCompraItems();
+            var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+            
             _carrinhoCompra.CarrinhoCompraItems = itens;
 
             var carrinhoCompraVM = new CarrinhoCompraViewModel
             {
                 CarrinhoCompra = _carrinhoCompra,
-                Categorias = _categoriaRepository.Categorias,
-                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal()                
+                
+                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal(),
             };
+            ViewBag.Categorias = _categoriaRepository.Categorias;
+            //var list = TempData["Selecionado"] ;
+            //ViewBag.selecionado = list;
 
             return View(carrinhoCompraVM);
         }
 
-        public IActionResult AdicionarItemNoCarrinho(int produtoId)
+        public IActionResult AdicionarItemNoCarrinhoCompra(int produtoId)
         {
             var produtoSelecionado = _produtoRepository.Produtos
                                      .FirstOrDefault(p => p.ProdutoId == produtoId);
@@ -44,6 +49,12 @@ namespace LovelierJoais.Controllers
             {
                 _carrinhoCompra.AdicionarAoCarrinho(produtoSelecionado);
             }
+
+            //TempData["Selecionado"] = JsonConvert.SerializeObject(produtoSelecionado, Formatting.None,
+            //            new JsonSerializerSettings()
+            //            {
+            //                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //            });
 
             return RedirectToAction("Index");
         }

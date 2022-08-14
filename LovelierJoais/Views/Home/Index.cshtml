@@ -3,9 +3,8 @@
     ViewData["Title"] = "Bom gosto em Joias";
 }
 
-<div class="ban-div">
-    @*<img src=@ViewBag.BannerAliatorio class="ban_img"/>*@
-  <img src="https://joiasverae.com.br/wp-content/uploads/2020/11/lumina_banner_home.jpg" class="ban_img"/>
+<div id="home" class="ban-div">
+    <img src=@ViewBag.BannerAliatorio class="ban_img"/>  
 </div>
 
 <hr />
@@ -29,7 +28,9 @@
             </div>
         </div>
     </article>
-
+    <div>
+        <partial name="_info"/>
+    </div>
     <hr />
     <h3>Titulo promoção</h3>
     <article class="c-carousel">

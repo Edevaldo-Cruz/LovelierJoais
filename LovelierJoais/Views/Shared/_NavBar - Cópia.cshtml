@@ -1,0 +1,92 @@
+﻿<nav class="nav-fixo ">
+    <div class="container">
+        <table>
+            <tr>
+                <td rowspan="2">
+                    <a class="nav-div-img"
+                       asp-action="Index"
+                       asp-controller="Home"
+                       asp-route-home="Home">
+                        <img src="~/images/logo.png"
+                             width="365"
+                             height="170"
+                             alt="logo Lovelier Joias" />
+                    </a>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <div class="nav-div-padrao">
+                        <a>
+                            <img src="~/images/user.png"
+                                 width="45"
+                                 height="45"
+                                 alt="icone usuario" />
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <partial name="_Login" />
+                    @*<div class="nav-div-padrao">
+                        <a class="texto-padrao">
+                            <b>Olá Visitante!</b>
+                            <br />Acesse sua conta
+                        </a>
+                    </div>*@
+                </td>
+                <td>
+                    @*<div class="nav-div-padrao">
+                        <a>
+                            <img src="~/images/arrowDown.png"
+                                 width="25"
+                                 height="25"
+                                 alt="icone seta acesse sua conta" />
+                        </a>
+                    </div>*@
+                <td>
+                    <form asp-controller="Produto" asp-action="Search" method="get">
+                        <div class="nav-div-icone-usuario">
+                            <div class="input-group mb-3 nav-div-usuario">
+                                <input type="text" class="form-control nav-input"
+                                       placeholder="##Rosana colocar uma frase boa aqui##"
+                                       aria-label="Recipiente para nickname"
+                                       aria-describedby="basic-addon2"
+                                       name="searchString" value="@ViewData["searchString"]" />
+                                <div class="input-group-append">
+
+                                    <img class="float-end icone-lupa"
+                                         src="~/images/lupa.png"
+                                         width="45" height="45"
+                                         alt="icone usuario" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <table class="nav-tabela">
+                <tr>
+                    <td>
+                        @await Component.InvokeAsync("SubcategoriaMenu")
+                    </td>
+                    @foreach (var item in ViewBag.Categorias)
+                    {
+                        <td>
+                            <a class="nav-link texto-padrao" href="#"> <b>@item.CategoriaNome</b></a>
+                        </td>
+                    }
+                    <td>
+                        <span class="nav-link" href="#">                           
+                                @await Component.InvokeAsync("CarrinhoCompraResumo")                           
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </table>
+
+    </div>
+</nav>
+
+
+

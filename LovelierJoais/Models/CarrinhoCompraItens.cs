@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LovelierJoais.Models
 {
-    [Table("CarrinhoCompraItem")]
+    [Table("CarrinhoCompraItens")]
     public class CarrinhoCompraItem
     {
         public int CarrinhoCompraItemId { get; set; }

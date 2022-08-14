@@ -1,5 +1,6 @@
 ﻿using LovelierJoais.Models;
 using LovelierJoais.Repositories.Interfaces;
+using LovelierJoais.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LovelierJoais.Controllers
@@ -8,16 +9,19 @@ namespace LovelierJoais.Controllers
     {
         private readonly IPedidoRepository _pedidoRepository;
         private readonly CarrinhoCompra _carrinhoCompra;
+        private readonly ICategoriaRepository _categoriaRepository;
 
-        public PedidoController(IPedidoRepository pedidoRepository, CarrinhoCompra carrinhoCompra)
+        public PedidoController(IPedidoRepository pedidoRepository, CarrinhoCompra carrinhoCompra, ICategoriaRepository categoriaRepository)
         {
             _pedidoRepository = pedidoRepository;
             _carrinhoCompra = carrinhoCompra;
+            _categoriaRepository = categoriaRepository;
         }
 
         [HttpGet]
         public IActionResult Checkout()
         {
+            ViewBag.Categorias = _categoriaRepository.Categorias;
             return View();
         }
 
@@ -27,7 +31,7 @@ namespace LovelierJoais.Controllers
             int totalItensPedido = 0;
             decimal precoTotalPedido = 0.0m;
 
-            List<CarrinhoCompraItem> Items = _carrinhoCompra.GetCarrinhoCompraItems();
+            List<CarrinhoCompraItem> Items = _carrinhoCompra.GetCarrinhoCompraItens();
             _carrinhoCompra.CarrinhoCompraItems = Items;
 
             if (_carrinhoCompra.CarrinhoCompraItems.Count == 0)
@@ -44,7 +48,7 @@ namespace LovelierJoais.Controllers
             pedido.TotalItensPedido = totalItensPedido;
             pedido.PedidoTotal = precoTotalPedido;
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _pedidoRepository.CriarPedido(pedido);
 
@@ -53,10 +57,18 @@ namespace LovelierJoais.Controllers
 
                 _carrinhoCompra.LimparCarrinho();
 
-                return View("~/Views/Pedido/CheckoutCompleto.cshtml", pedido);
+                return View("~/Views/Pedido/CheckoutCompleto.cshtml", new PedidoProdutoViewModel
+                {
+                    Pedido = pedido,
+                    Categorias = _categoriaRepository.Categorias
+                });
             }
 
-            return View(pedido);
+            return View("~/Views/Pedido/CheckoutCompleto.cshtml", new PedidoProdutoViewModel
+            {
+                Pedido = pedido,
+                Categorias = _categoriaRepository.Categorias
+            });
         }
     }
 }

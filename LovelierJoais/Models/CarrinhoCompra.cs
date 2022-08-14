@@ -18,16 +18,19 @@ namespace LovelierJoais.Models
 
         
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
-        {            
+        {   //Define uma sessão         
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-            
+            //Obtem um serviço deo tipo contexto
             var context = services.GetService<AppDbContext>();
 
-            string carrinhoId = session.GetString("Carrinho") ?? Guid.NewGuid().ToString();
+            //Obtem o id ou gera um novo id
+            string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
 
+            //Atribui o id do carrinho na sessão
             session.SetString("CarrinhoId", carrinhoId);
             
+            //retorna o carrinho dom o contexto e o Id.
             return new CarrinhoCompra(context)
             {
                 CarrinhoCompraId = carrinhoId
@@ -39,7 +42,7 @@ namespace LovelierJoais.Models
         {
             
             var carrinhoCompraItem =
-                _context.CarrinhoCompraItem.SingleOrDefault(                   
+                _context.CarrinhoCompraItens.SingleOrDefault(                   
                     s => s.Produto.ProdutoId == produto.ProdutoId &&
                     s.CarrinhoCompraId == CarrinhoCompraId);
             
@@ -51,7 +54,7 @@ namespace LovelierJoais.Models
                     Produto = produto,
                     Quantidade = 1
                 };
-                _context.CarrinhoCompraItem.Add(carrinhoCompraItem);
+                _context.CarrinhoCompraItens.Add(carrinhoCompraItem);
             }
             else
             {
@@ -65,7 +68,7 @@ namespace LovelierJoais.Models
         {
             
             var carrinhoCompraItem =
-                _context.CarrinhoCompraItem.SingleOrDefault(                    
+                _context.CarrinhoCompraItens.SingleOrDefault(                    
                     s => s.Produto.ProdutoId == produto.ProdutoId &&
                     s.CarrinhoCompraId == CarrinhoCompraId);
 
@@ -80,7 +83,7 @@ namespace LovelierJoais.Models
                 }
                 else
                 {
-                    _context.CarrinhoCompraItem.Remove(carrinhoCompraItem);
+                    _context.CarrinhoCompraItens.Remove(carrinhoCompraItem);
                 }
             }
 
@@ -88,30 +91,30 @@ namespace LovelierJoais.Models
             return quantidadeLocal;
         }
 
-        
-        public List<CarrinhoCompraItem> GetCarrinhoCompraItems()
+
+        public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
         {
+
             return CarrinhoCompraItems ??
-                (CarrinhoCompraItems =
-                    _context.CarrinhoCompraItem
-                    .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
-                    .Include(s => s.Produto)
-                    .ToList());
+                   (CarrinhoCompraItems =
+                       _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                           .Include(p => p.Produto)
+                           .ToList());
         }
-       
+
         public void LimparCarrinho()
         {           
-            var carrinhoItens = _context.CarrinhoCompraItem
+            var carrinhoItens = _context.CarrinhoCompraItens
                                 .Where(carrinho =>
                                 carrinho.CarrinhoCompraId == CarrinhoCompraId);
            
-            _context.CarrinhoCompraItem.RemoveRange(carrinhoItens);
+            _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
             _context.SaveChanges();
         }
        
         public decimal GetCarrinhoCompraTotal()
         {
-            var total = _context.CarrinhoCompraItem
+            var total = _context.CarrinhoCompraItens
                         .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                         .Select(c => c.Produto.Preco * c.Quantidade).Sum();
             return total;

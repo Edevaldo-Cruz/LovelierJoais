@@ -1,7 +1,17 @@
 /*Geral*/
+.background-geral {
+    background-color: #FFF2F2
+}
+
 h3 {
     color: #7E2228
 }
+
+.div-top-padrao {
+    margin-top: 120px;
+}
+
+
 
 /*NavBar*/
 .nav-fixo {
@@ -50,7 +60,7 @@ a:hover {
 }
 
 .nav-div-usuario {
-    width: 550px;
+    width: 600px;
     height: 54px;
     background-color: #FFFFFF;
     border-radius: 30px
@@ -145,8 +155,8 @@ a:hover {
     left: 0;
     right: 0;
     top: 0;
-    margin-left: -240px;
-    margin-right: -240px;
+    margin-left: -300px;
+    margin-right: -300px;
 }
 
 .ban_img {

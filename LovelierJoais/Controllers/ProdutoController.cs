@@ -55,6 +55,7 @@ namespace LovelierJoais.Controllers
                 Categorias = _categoriaRepository.Categorias
             };
 
+            ViewBag.Categorias = _categoriaRepository.Categorias;
             return View(ProdutoListViewModel);
         }
 
@@ -63,9 +64,10 @@ namespace LovelierJoais.Controllers
             var selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
             var ProdutoListViewModel = new ProdutoListViewModel
             {               
-                Categorias = _categoriaRepository.Categorias
+                //Categorias = _categoriaRepository.Categorias
             };            
             ViewBag.Selecionado = selecionado;
+            ViewBag.Categorias = _categoriaRepository.Categorias;
             return View(ProdutoListViewModel);
         }
 
