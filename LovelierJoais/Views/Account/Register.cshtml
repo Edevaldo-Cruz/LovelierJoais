@@ -1,34 +1,91 @@
 ﻿@model LoginViewModel
 @{
-    Layout = "_SegundoLayout";
+    Layout = "_LayoutLogin";
 }
+<div class="container" style="margin-top: 30px;">
+    <div>
+        <a class="row" style="cursor: pointer" asp-controller="Account" asp-action="Login">
+            <div class="col">
+                <img src="~/images/arrow-left.png" alt="icone retorna para pagina anterior" />
+            </div>
+        </a>
+    </div>
+    <div style="width: 750px; background-color: #FFF; padding: 30px; margin-left: auto; margin-right: auto; border: solid; border-color: #7E2228">
 
-<table class="table">
-    <tr>
-        <td><img src="~/images/registro1.jpg" alt="Registrar Usuário"  /></td>
-        <td>
+        <form asp-controller="Account" asp-action="Register" method="post">
+            <h4 style="display: flex; flex-direction: row; justify-content: center; align-items: center; color: #7E2228">Cadastro</h4>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="row">
-                 <div class="col-10 col-md-10 col-lg-10">
-                    <h4>Registrar usuário</h4>
-                     <form asp-controller="Account" asp-action="Register" method="post">
-                         <hr />
-                         <div asp-validation-summary="All" class="text-danger"></div>
-                          <div class="form-group">
-                            <label asp-for="UserName"> </label>
-                            <input asp-for="UserName" class="form-control" />
-                            <span asp-validation-for="UserName" class="text-danger"></span>
-                          </div>
-                           <div class="form-group">
-                             <label asp-for="Password"></label>
-                             <input asp-for="Password" class="form-control" />
-                             <span asp-validation-for="Password" class="text-danger"></span>
-                           </div>
-                         <div class="form-group">
-                           <input type="submit" class="btn btn-success " value="Registrar" />
-                         </div>
-                     </form>
-               </div>    
-           </div>    
-        </td>
-    <tr>
-</table>
+                <div class="form-group">
+                    <label asp-for="UserName" style="color: #7E2228">Nome Completo</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                    <label asp-for="UserName" style="color: #7E2228">Data de Nascimento</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                    <label asp-for="UserName" style="color: #7E2228">CPF</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-2 col-md-2 col-sm-2">
+                    <label asp-for="UserName" style="color: #7E2228">DDD</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-5 col-md-5 col-sm-5">
+                    <label asp-for="UserName" style="color: #7E2228">Telefone</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-5 col-md-5 col-sm-5">
+                    <label asp-for="UserName" style="color: #7E2228">CEP</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label asp-for="UserName" style="color: #7E2228">Enderenço</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                    <label asp-for="UserName">Bairro</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                    <label asp-for="UserName" style="color: #7E2228">Cidade</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                    <label asp-for="UserName" style="color: #7E2228">Complemento</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserName" style="color: #7E2228">Email</label>
+                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" style="color: #7E2228"></label>
+                    <input asp-for="Password" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div style="margin-top: 30px;" class="btn-group col-12">
+                    <div class="col-12 row justify-content-end">
+                        <input type="submit" class="btn btn-success car-botao-encerrar" value="Registrar" />
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
