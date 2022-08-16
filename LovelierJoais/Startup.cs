@@ -2,6 +2,7 @@
 using LovelierJoais.Models;
 using LovelierJoais.Repositories;
 using LovelierJoais.Repositories.Interfaces;
+using LovelierJoais.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +45,9 @@ namespace LovelierJoais
             //Serviço para acessar recurso do HTTPContext
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            //Serviço perfil e usuario
+            services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+
             //Registrando serviço class carrinho de compra
             services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
 
@@ -69,12 +73,27 @@ namespace LovelierJoais
                 options.Password.RequiredUniqueChars = 1;
             });
 
+            // Politica de Autorização
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin",
+                    politica =>
+                    {
+                        politica.RequireRole("Admin");
+                    });
+            });
+
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISeedUserRoleInitial seedUserRoleInitial)
         {
+            //cria os perfis
+            seedUserRoleInitial.SeedRoles();
+            //cria os usuários e atribui ao perfil
+            seedUserRoleInitial.SeedUsers();
+
             //Habilitando o Session
             app.UseSession();
 
@@ -95,6 +114,14 @@ namespace LovelierJoais
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+                );
+            });
 
             app.UseEndpoints(endpoints =>
             {

@@ -2,6 +2,7 @@
 using LovelierJoais.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Documents;
 
 namespace LovelierJoais.Controllers
 {
@@ -62,6 +63,7 @@ namespace LovelierJoais.Controllers
         //Acionando a view Register
         public IActionResult Register()
         {
+           
             ViewBag.Categorias = _categoriaRepository.Categorias;
             return View();
         }
