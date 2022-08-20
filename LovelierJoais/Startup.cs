@@ -5,6 +5,7 @@ using LovelierJoais.Repositories.Interfaces;
 using LovelierJoais.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace LovelierJoais
 {
@@ -81,6 +82,13 @@ namespace LovelierJoais
                     {
                         politica.RequireRole("Admin");
                     });
+            });
+
+            //Paginação
+            services.AddPaging(options =>
+            {
+                options.ViewName = "Bootdtrap4";
+                options.PageParameterName = "pageindex";
             });
 
 

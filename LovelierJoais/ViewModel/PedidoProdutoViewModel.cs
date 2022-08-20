@@ -6,7 +6,7 @@ namespace LovelierJoais.ViewModel
     {
         public Pedido Pedido { get; set; }
 
-        public IEnumerable<PedidoDetalhe> PedidoDetalhe { get; set; }
+        public IEnumerable<PedidoDetalhe> PedidoDetalhes { get; set; }
 
         public IEnumerable<Categoria> Categorias { get; set; }
     }
