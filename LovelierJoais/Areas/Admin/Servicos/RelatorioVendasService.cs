@@ -15,7 +15,7 @@ namespace LovelierJoais.Areas.Admin.Servicos
 
         public async Task<List<Pedido>> FindByDateAsync(DateTime? minDate, DateTime? maxDate)
         {
-            var resultado = from obj in context.Pedido select obj;
+            var resultado = from obj in context.Pedidos select obj;
 
             if (minDate.HasValue)
             {

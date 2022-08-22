@@ -1,6 +1,6 @@
 ﻿using LovelierJoais.Models;
 using LovelierJoais.Repositories.Interfaces;
-using LovelierJoais.ViewModel;
+using LovelierJoais.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LovelierJoais.Controllers

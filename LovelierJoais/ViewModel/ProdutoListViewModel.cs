@@ -1,6 +1,6 @@
 ﻿using LovelierJoais.Models;
 
-namespace LovelierJoais.ViewModel
+namespace LovelierJoais.ViewModels
 {
     public class ProdutoListViewModel : Produto
     {

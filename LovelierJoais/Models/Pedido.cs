@@ -9,19 +9,19 @@ namespace LovelierJoais.Models
 
         [ScaffoldColumn(false)]
         [Column(TypeName = "decimal(18,2)")]
-        [Display(Name = "Total do Pedido")]
+        [Display(Name = "Total do Pedidos")]
         public decimal PedidoTotal { get; set; }
 
         [ScaffoldColumn(false)]
-        [Display(Name = "Itens no Pedido")]
+        [Display(Name = "Itens no Pedidos")]
         public int TotalItensPedido { get; set; }
 
-        [Display(Name = "Data do Pedido")]
+        [Display(Name = "Data do Pedidos")]
         [DataType(DataType.Text)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime PedidoEnviado { get; set; }
 
-        [Display(Name = "Data Envio Pedido")]
+        [Display(Name = "Data Envio Pedidos")]
         [DataType(DataType.Text)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime? PedidoEntregueEm { get; set; }

@@ -1,5 +1,5 @@
 ﻿using LovelierJoais.Models;
-using LovelierJoais.ViewModel;
+using LovelierJoais.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LovelierJoais.Components

@@ -23,18 +23,18 @@ namespace LovelierJoais.Areas.Admin.Controllers
         // GET: Admin/AdminPedidoes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Pedido.ToListAsync());
+              return View(await _context.Pedidos.ToListAsync());
         }
 
         // GET: Admin/AdminPedidoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Pedido == null)
+            if (id == null || _context.Pedidos == null)
             {
                 return NotFound();
             }
 
-            var pedido = await _context.Pedido
+            var pedido = await _context.Pedidos
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedido == null)
             {
@@ -69,12 +69,12 @@ namespace LovelierJoais.Areas.Admin.Controllers
         // GET: Admin/AdminPedidoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Pedido == null)
+            if (id == null || _context.Pedidos == null)
             {
                 return NotFound();
             }
 
-            var pedido = await _context.Pedido.FindAsync(id);
+            var pedido = await _context.Pedidos.FindAsync(id);
             if (pedido == null)
             {
                 return NotFound();
@@ -120,12 +120,12 @@ namespace LovelierJoais.Areas.Admin.Controllers
         // GET: Admin/AdminPedidoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Pedido == null)
+            if (id == null || _context.Pedidos == null)
             {
                 return NotFound();
             }
 
-            var pedido = await _context.Pedido
+            var pedido = await _context.Pedidos
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedido == null)
             {
@@ -140,14 +140,14 @@ namespace LovelierJoais.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Pedido == null)
+            if (_context.Pedidos == null)
             {
-                return Problem("Entity set 'AppDbContext.Pedido'  is null.");
+                return Problem("Entity set 'AppDbContext.Pedidos'  is null.");
             }
-            var pedido = await _context.Pedido.FindAsync(id);
+            var pedido = await _context.Pedidos.FindAsync(id);
             if (pedido != null)
             {
-                _context.Pedido.Remove(pedido);
+                _context.Pedidos.Remove(pedido);
             }
             
             await _context.SaveChangesAsync();
@@ -156,7 +156,7 @@ namespace LovelierJoais.Areas.Admin.Controllers
 
         private bool PedidoExists(int id)
         {
-          return _context.Pedido.Any(e => e.PedidoId == id);
+          return _context.Pedidos.Any(e => e.PedidoId == id);
         }
     }
 }

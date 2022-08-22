@@ -21,6 +21,19 @@ namespace LovelierJoais
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Paginação
+            //services.AddPaging(options =>
+            //{
+            //    options.ViewName = "Bootdtrap4";
+            //    options.PageParameterName = "pageindex";
+            //});
+
+            services.AddPaging(options =>
+            {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+            });
+
             services.AddControllersWithViews();
 
             //conecxao com banco de dados
@@ -84,12 +97,7 @@ namespace LovelierJoais
                     });
             });
 
-            //Paginação
-            services.AddPaging(options =>
-            {
-                options.ViewName = "Bootdtrap4";
-                options.PageParameterName = "pageindex";
-            });
+           
 
 
         }

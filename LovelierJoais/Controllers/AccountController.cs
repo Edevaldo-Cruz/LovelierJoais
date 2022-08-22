@@ -1,5 +1,5 @@
 ﻿using LovelierJoais.Repositories.Interfaces;
-using LovelierJoais.ViewModel;
+using LovelierJoais.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;

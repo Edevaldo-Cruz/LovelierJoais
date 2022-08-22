@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LovelierJoais.ViewModel
+namespace LovelierJoais.ViewModels
 {
     public class LoginViewModel
     {

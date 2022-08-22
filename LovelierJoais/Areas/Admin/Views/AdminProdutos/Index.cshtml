@@ -1,88 +1,93 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<LovelierJoais.Models.Produto>
 
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
-<h3>Produtos</h3>
+<div class="container">
+    <h3>Produtos</h3>
 
-<form method="get" class="form-inline">
+    <form method="get" class="form-inline">
 
-    <input name="filter" class="form-control" placeholder="filtro"
-           value="@Model.RouteValue["Filter"]" />
+        <input name="filter" class="form-control" placeholder="filtro"
+               value="@Model.RouteValue["Filter"]" />
 
-    <button type="submit" class="btn btn-outline-secondary float-end" style="margin: 15px 0px;"> Procurar</button>
+        <button type="submit" class="btn btn-outline-secondary float-end" style="margin: 15px 0px;"> Procurar</button>
 
-</form>
-<div>
-    <p>
-        <a asp-action="Create" class="btn btn-secondary" style="margin: 15px 0px;">Incluir Produto</a>
-    </p>
-</div>
-<h4>
-    Total de Produtos : @Model.TotalRecordCount
-</h4>
+    </form>
+    <div>
+        <p>
+            <a asp-action="Create" class="btn btn-secondary" style="margin: 15px 0px;">Incluir Produto</a>
+        </p>
+    </div>
+    <h4>
+        Total de Produtos : @Model.TotalRecordCount
+    </h4>
 
-<div class="row">
-    <div class="col-md-10">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nome)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DescricaoCurta)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Preco)
-                    </th>
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.IsLanchePreferido)
-                    </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.Estoque)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Categoria)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DescricaoCurta)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Preco)
-                        </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.IsLanchePreferido)
-                        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Estoque)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Categoria.CategoriaNome)
-                        </td>
-                        <td class="row">
-                            <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Edita</a>
-                            <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Detalhes</a>
-                            <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Deleta</a>
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th>
+                            DescricaoCurta
+                        </th>
+                        <th>
+                            Preco
+                        </th>
+
+                        <th>
+                            Estoque
+                        </th>
+                        <th>
+                            Categoria
+                        </th>
+                        <th>
+                            Subcategoria
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
-        <div>
-            <vc:pager paging-list="@Model"></vc:pager>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescricaoCurta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Preco)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Estoque)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Categoria.CategoriaNome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subcategoria.SubcategoriaNome)
+                            </td>
+                            <td class="row">
+                                <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Edita</a>
+                                <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Detalhes</a>
+                                <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Deleta</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                <vc:pager paging-list="@Model"></vc:pager>
+            </div>
+
+
         </div>
-
-
     </div>
 </div>

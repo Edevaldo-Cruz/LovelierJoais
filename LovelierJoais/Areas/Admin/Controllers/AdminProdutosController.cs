@@ -22,14 +22,17 @@ namespace LovelierJoais.Areas.Admin.Controllers
         //Metodo com paginação
         public async Task<IActionResult> Index(String filter, int pageindex= 1, string sort = "Nome")
         {
-            var resultado = _context.Produtos.Include(l => l.Categoria).AsQueryable();
+            var resultado = _context.Produtos
+                                .Include(l => l.Categoria).AsQueryable()
+                                .Include(x => x.Subcategoria).AsQueryable();
+           
 
-            if(!string.IsNullOrEmpty(filter))
+            if (!string.IsNullOrEmpty(filter))
             {
-                resultado = resultado.Where(p => p.Nome.Contains(filter));
+                resultado = resultado.Where(p => p.Nome.Contains(filter));                
             }
 
-            var model = await PagingList.CreateAsync(resultado, 5, pageindex, sort, "Nome");
+            var model = await PagingList.CreateAsync(resultado, 4, pageindex, sort, "Nome");
             model.RouteValue = new RouteValueDictionary { { "filter", filter } };
             return View(model);
         }
@@ -42,30 +45,30 @@ namespace LovelierJoais.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var lanche = await _context.Produtos
+            var produto = await _context.Produtos
                 .Include(l => l.Categoria)
+                .Include(x => x.Subcategoria)
                 .FirstOrDefaultAsync(m => m.ProdutoId == id);
-            if (lanche == null)
+            if (produto == null)
             {
                 return NotFound();
             }
 
-            return View(lanche);
+            return View(produto);
         }
 
         // GET: Admin/AdminLanches/Create
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaNome");
+            ViewData["SubcategoriaId"] = new SelectList(_context.Subcategorias, "SubcategoriaId", "SubcategoriaNome");
             return View();
         }
 
-        // POST: Admin/AdminLanches/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Admin/AdminLanches/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LancheId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,ImagemThumbnailUrl,IsLanchePreferido,EmEstoque,CategoriaId")] Produto produto)
+        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,Destaque,Promocao,Estoque,CategoriaId, SubcategoriaId")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +77,7 @@ namespace LovelierJoais.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaNome", produto.CategoriaId);
+            ViewData["SubcategoriaId"] = new SelectList(_context.Subcategorias, "SubcategoriaId", "SubcategoriaNome", produto.SubcategoriaId);
             return View(produto);
         }
 
@@ -85,21 +89,20 @@ namespace LovelierJoais.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var lanche = await _context.Produtos.FindAsync(id);
-            if (lanche == null)
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null)
             {
                 return NotFound();
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaNome", lanche.CategoriaId);
-            return View(lanche);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaNome", produto.CategoriaId);
+            ViewData["SubcategoriaId"] = new SelectList(_context.Subcategorias, "SubcategoriaId", "SubcategoriaNome", produto.SubcategoriaId);
+            return View(produto);
         }
 
-        // POST: Admin/AdminLanches/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Admin/AdminLanches/Edit/5       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LancheId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,ImagemThumbnailUrl,IsLanchePreferido,EmEstoque,CategoriaId")] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,Destaque,Promocao,Estoque,CategoriaId, SubcategoriaId")] Produto produto)
         {
             if (id != produto.ProdutoId)
             {
@@ -115,7 +118,7 @@ namespace LovelierJoais.Areas.Admin.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LancheExists(produto.ProdutoId))
+                    if (!ProdutoExists(produto.ProdutoId))
                     {
                         return NotFound();
                     }
@@ -127,6 +130,7 @@ namespace LovelierJoais.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaNome", produto.CategoriaId);
+            ViewData["SubcategoriaId"] = new SelectList(_context.Subcategorias, "SubcategoriaId", "SubcategoriaNome", produto.SubcategoriaId);
             return View(produto);
         }
 
@@ -158,17 +162,17 @@ namespace LovelierJoais.Areas.Admin.Controllers
             {
                 return Problem("Entity set 'AppDbContext.Lanches'  is null.");
             }
-            var lanche = await _context.Produtos.FindAsync(id);
-            if (lanche != null)
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto != null)
             {
-                _context.Produtos.Remove(lanche);
+                _context.Produtos.Remove(produto);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LancheExists(int id)
+        private bool ProdutoExists(int id)
         {
           return _context.Produtos.Any(e => e.ProdutoId == id);
         }

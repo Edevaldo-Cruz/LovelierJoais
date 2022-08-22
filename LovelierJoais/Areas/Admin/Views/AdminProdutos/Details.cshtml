@@ -1,0 +1,69 @@
+﻿@model LovelierJoais.Models.Produto
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Details";
+}
+<div class="container">
+    <h3>Detalhes</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DescricaoCurta)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DescricaoCurta)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DescricaoDetalhada)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DescricaoDetalhada)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Preco)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Preco)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ImagemUrl)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ImagemUrl)
+            </dd>            
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Estoque)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Estoque)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Categoria)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Categoria.CategoriaNome)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Subcategoria)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Subcategoria.SubcategoriaNome)
+            </dd>
+        </dl>
+    </div>
+    <hr />
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ProdutoId">Editar</a> |
+        <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
+    </div>
+
+</div>
+

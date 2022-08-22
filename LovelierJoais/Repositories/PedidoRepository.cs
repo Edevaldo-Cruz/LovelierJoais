@@ -23,7 +23,7 @@ namespace LovelierJoais.Repositories
             pedido.PedidoEnviado = DateTime.Now;
 
             // Adiconando pedido no banco de dados 
-            _appDbContext.Pedido.Add(pedido);
+            _appDbContext.Pedidos.Add(pedido);
             _appDbContext.SaveChanges();
 
             var carrinhoCompraItens = _carrinhoCompra.CarrinhoCompraItems;
@@ -36,7 +36,7 @@ namespace LovelierJoais.Repositories
                     PedidoId = pedido.PedidoId,
                     Preco = carrinhoItem.Produto.Preco
                 };
-                _appDbContext.PedidoDetalhe.Add(pedidoDetail);
+                _appDbContext.PedidoDetalhes.Add(pedidoDetail);
             }
             _appDbContext.SaveChanges();
         }

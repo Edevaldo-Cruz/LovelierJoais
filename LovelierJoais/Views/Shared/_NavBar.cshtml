@@ -26,9 +26,13 @@
 
                             @foreach (var item in ViewBag.Categorias)
                             {
-                                <div class="col">
-                                    <a class="nav-link texto-padrao" href="#"> <b>@item.CategoriaNome</b></a>
-                                </div>
+                            if(item.Link == true){
+                            <div class="col">
+                                <a class="nav-link texto-padrao" href="#"> <b>@item.CategoriaNome</b></a>
+                            </div>
+
+                            }
+
                             }
                             <div class="col">
                                 <span class="nav-link" href="#">

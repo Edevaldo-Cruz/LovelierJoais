@@ -1,7 +1,7 @@
 ﻿using LovelierJoais.Models;
 using LovelierJoais.Repositories.Interfaces;
 
-namespace LovelierJoais.ViewModel
+namespace LovelierJoais.ViewModels
 {
     public class CarrinhoCompraViewModel
     {

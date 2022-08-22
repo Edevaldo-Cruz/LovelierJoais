@@ -1,7 +1,7 @@
 ﻿using LovelierJoais.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using LovelierJoais.Models;
-using LovelierJoais.ViewModel;
+using LovelierJoais.ViewModels;
 using Newtonsoft.Json;
 
 namespace LovelierJoais.Controllers

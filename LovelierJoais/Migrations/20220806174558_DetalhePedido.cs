@@ -42,7 +42,7 @@ namespace LovelierJoais.Migrations
                 oldMaxLength: 200);
 
             migrationBuilder.CreateTable(
-                name: "Pedido",
+                name: "Pedidos",
                 columns: table => new
                 {
                     PedidoId = table.Column<int>(type: "int", nullable: false)
@@ -74,7 +74,7 @@ namespace LovelierJoais.Migrations
                     table.ForeignKey(
                         name: "FK_PedidoDetalhe_Pedido_PedidoId",
                         column: x => x.PedidoId,
-                        principalTable: "Pedido",
+                        principalTable: "Pedidos",
                         principalColumn: "PedidoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -113,7 +113,7 @@ namespace LovelierJoais.Migrations
                 name: "PedidoDetalhe");
 
             migrationBuilder.DropTable(
-                name: "Pedido");
+                name: "Pedidos");
 
             migrationBuilder.AlterColumn<string>(
                 name: "ImagemUrl",
