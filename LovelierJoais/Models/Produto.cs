@@ -41,6 +41,9 @@ namespace LovelierJoais.Models
         [Display(Name = "Promoção?")]
         public bool Promocao { get; set; }
 
+        [Display(Name = "Info?")]
+        public bool Info { get; set; }
+
         [Required(ErrorMessage = "Informe a quantidade do produto que tem em estoque")]        
         public int Estoque { get; set; }
 
@@ -50,6 +53,6 @@ namespace LovelierJoais.Models
 
         public virtual Categoria Categoria { get; set; }
         public virtual Subcategoria Subcategoria { get; set; }
-        
+       
     }
 }

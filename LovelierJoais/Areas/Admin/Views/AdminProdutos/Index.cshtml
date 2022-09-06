@@ -1,5 +1,4 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<LovelierJoais.Models.Produto>
-
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
@@ -8,12 +7,9 @@
     <h3>Produtos</h3>
 
     <form method="get" class="form-inline">
-
         <input name="filter" class="form-control" placeholder="filtro"
                value="@Model.RouteValue["Filter"]" />
-
         <button type="submit" class="btn btn-outline-secondary float-end" style="margin: 15px 0px;"> Procurar</button>
-
     </form>
     <div>
         <p>
@@ -75,7 +71,9 @@
                                 @Html.DisplayFor(modelItem => item.Subcategoria.SubcategoriaNome)
                             </td>
                             <td class="row">
-                                <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Edita</a>
+                                <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-primary">
+                                    <img src="~/images/edit.png" alt="icone editar" width="30" height="30"/>
+                                </a>
                                 <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Detalhes</a>
                                 <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Deleta</a>
                             </td>

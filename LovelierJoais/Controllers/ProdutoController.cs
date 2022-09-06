@@ -18,34 +18,32 @@ namespace LovelierJoais.Controllers
             _subcategoriaRepository = subcategoriaRepository;
         }
 
-        public IActionResult List(string subcategoria)
+        public IActionResult List(string subcategoria, string categoria, int produtoId)
         {
             IEnumerable<Produto> produtos;
             string subcategoriaAtual = string.Empty;
+            string categoriaAtual = string.Empty;
 
             // Se a variavel categoria estiver null ou vazia
-            if (string.IsNullOrEmpty(subcategoria))
+            if (string.IsNullOrEmpty(subcategoria) && string.IsNullOrEmpty(categoria))
             {
-                
                 produtos = (IEnumerable<Produto>)_produtoRepository.Produtos.OrderBy(l => l.ProdutoId);
                 subcategoriaAtual = "Todos os Produtos";
             }
+            else if (!string.IsNullOrEmpty(subcategoria) && string.IsNullOrEmpty(categoria))
+            {
+                produtos = _produtoRepository.Produtos
+                    .Where(p => p.SubcategoriaId == Convert.ToInt32(subcategoria))
+                    .OrderBy(l => l.ProdutoId);
+                subcategoriaAtual = subcategoria;
+            }
             else
             {
-                //Se a variavel categoria for igual a Normal 
-                if (string.Equals("1", subcategoria, StringComparison.OrdinalIgnoreCase))
-                {
-                    produtos = _produtoRepository.Produtos
-                    .Where(p => p.SubcategoriaId == 1)
-                    .OrderBy(l => l.ProdutoId);
-                }
-                else
-                {                  
-                    produtos = _produtoRepository.Produtos
-                    .Where(p => p.SubcategoriaId == 2)
-                    .OrderBy(l => l.ProdutoId);
-                }
-                subcategoriaAtual = subcategoria;
+
+                produtos = _produtoRepository.Produtos
+                   .Where(p => p.CategoriaId == Convert.ToInt32(categoria))
+                   .OrderBy(l => l.ProdutoId);
+                categoriaAtual = categoria;
             }
 
             var ProdutoListViewModel = new ProdutoListViewModel
@@ -53,21 +51,27 @@ namespace LovelierJoais.Controllers
                 Produtos = produtos,
                 CategoriaAtual = subcategoriaAtual,
                 Categorias = _categoriaRepository.Categorias
+
             };
 
+            ViewBag.Destaque = _produtoRepository.ProdutoDestaque.ToList();
             ViewBag.Categorias = _categoriaRepository.Categorias;
+            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
+            //ViewBag.Selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
             return View(ProdutoListViewModel);
         }
 
         public IActionResult Details(int produtoId)
         {
-            var selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
             var ProdutoListViewModel = new ProdutoListViewModel
-            {               
+            {
                 //Categorias = _categoriaRepository.Categorias
-            };            
-            ViewBag.Selecionado = selecionado;
+                produto = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId)
+            };
+            ViewBag.Selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
             ViewBag.Categorias = _categoriaRepository.Categorias;
+            ViewBag.Destaque = _produtoRepository.ProdutoDestaque.ToList();
+            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
             return View(ProdutoListViewModel);
         }
 
@@ -93,6 +97,7 @@ namespace LovelierJoais.Controllers
 
             }
 
+            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
             return View("~/Views/Produto/List.cshtml", new ProdutoListViewModel
             {
                 Produtos = produtos,

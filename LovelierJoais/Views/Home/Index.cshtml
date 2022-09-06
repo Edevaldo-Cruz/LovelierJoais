@@ -4,7 +4,7 @@
 }
 
 <div id="home" class="ban-div">
-    <img src=@ViewBag.BannerAliatorio class="ban_img"/>  
+    <img src=@ViewBag.BannerAliatorio class="ban_img" />
 </div>
 
 <hr />
@@ -12,7 +12,7 @@
     <h3>Titulo Destaque</h3>
     <article class="c-carousel">
         <div class="c-carousel_slides js-carousel--simple">
-            @foreach (var produto in Model.Destaque)
+            @foreach (var produto in @Model.ProdutoDestaque)
             {
                 <div>
                     <partial name="_ProdutosResumo" for="@produto" />
@@ -28,14 +28,15 @@
             </div>
         </div>
     </article>
+    <hr />
     <div>
-        <partial name="_info"/>
+        <partial name="_info" />
     </div>
     <hr />
     <h3>Titulo promoção</h3>
     <article class="c-carousel">
         <div class="c-carousel_slides js-carousel--promocao">
-            @foreach (var produto in Model.Promocao)
+            @foreach (var produto in Model.ProdutoPromocao)
             {
                 <div>
                     <partial name="_ProdutosResumo" for="@produto" />

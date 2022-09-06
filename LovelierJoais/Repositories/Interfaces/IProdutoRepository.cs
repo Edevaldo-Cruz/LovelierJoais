@@ -10,6 +10,8 @@ namespace LovelierJoais.Repositories.Interfaces
 
         IEnumerable<Produto> ProdutoDestaque { get; }
 
+        IEnumerable<Produto> ProdutoInfo { get; }
+
         Produto GetProdutosById(int produtoId);
     }
 }

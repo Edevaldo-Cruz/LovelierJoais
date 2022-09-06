@@ -7,91 +7,89 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LovelierJoais.Context;
 using LovelierJoais.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace LovelierJoais.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles="Admin")]
-    public class AdminCategoriasExController : Controller
+    public class AdminSubcategoriasController : Controller
     {
         private readonly AppDbContext _context;
 
-        public AdminCategoriasExController(AppDbContext context)
+        public AdminSubcategoriasController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/AdminCategorias
+        // GET: Admin/AdminSubcategorias
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Categorias.ToListAsync());
+              return View(await _context.Subcategorias.ToListAsync());
         }
 
-        // GET: Admin/AdminCategorias/Details/5
+        // GET: Admin/AdminSubcategorias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Categorias == null)
+            if (id == null || _context.Subcategorias == null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
-                .FirstOrDefaultAsync(m => m.CategoriaId == id);
-            if (categoria == null)
+            var subcategoria = await _context.Subcategorias
+                .FirstOrDefaultAsync(m => m.SubcategoriaId == id);
+            if (subcategoria == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(subcategoria);
         }
 
-        // GET: Admin/AdminCategorias/Create
+        // GET: Admin/AdminSubcategorias/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/AdminCategorias/Create
+        // POST: Admin/AdminSubcategorias/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoriaId,CategoriaNome,Descricao")] Categoria categoria)
+        public async Task<IActionResult> Create([Bind("SubcategoriaId,SubcategoriaNome,Descricao,Link")] Subcategoria subcategoria)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoria);
+                _context.Add(subcategoria);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            return View(subcategoria);
         }
 
-        // GET: Admin/AdminCategorias/Edit/5
+        // GET: Admin/AdminSubcategorias/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Categorias == null)
+            if (id == null || _context.Subcategorias == null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias.FindAsync(id);
-            if (categoria == null)
+            var subcategoria = await _context.Subcategorias.FindAsync(id);
+            if (subcategoria == null)
             {
                 return NotFound();
             }
-            return View(categoria);
+            return View(subcategoria);
         }
 
-        // POST: Admin/AdminCategorias/Edit/5
+        // POST: Admin/AdminSubcategorias/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoriaId,CategoriaNome,Descricao")] Categoria categoria)
+        public async Task<IActionResult> Edit(int id, [Bind("SubcategoriaId,SubcategoriaNome,Descricao,Link")] Subcategoria subcategoria)
         {
-            if (id != categoria.CategoriaId)
+            if (id != subcategoria.SubcategoriaId)
             {
                 return NotFound();
             }
@@ -100,12 +98,12 @@ namespace LovelierJoais.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(categoria);
+                    _context.Update(subcategoria);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoriaExists(categoria.CategoriaId))
+                    if (!SubcategoriaExists(subcategoria.SubcategoriaId))
                     {
                         return NotFound();
                     }
@@ -116,49 +114,49 @@ namespace LovelierJoais.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            return View(subcategoria);
         }
 
-        // GET: Admin/AdminCategorias/Delete/5
+        // GET: Admin/AdminSubcategorias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Categorias == null)
+            if (id == null || _context.Subcategorias == null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
-                .FirstOrDefaultAsync(m => m.CategoriaId == id);
-            if (categoria == null)
+            var subcategoria = await _context.Subcategorias
+                .FirstOrDefaultAsync(m => m.SubcategoriaId == id);
+            if (subcategoria == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(subcategoria);
         }
 
-        // POST: Admin/AdminCategorias/Delete/5
+        // POST: Admin/AdminSubcategorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Categorias == null)
+            if (_context.Subcategorias == null)
             {
-                return Problem("Entity set 'AppDbContext.Categorias'  is null.");
+                return Problem("Entity set 'AppDbContext.Subcategorias'  is null.");
             }
-            var categoria = await _context.Categorias.FindAsync(id);
-            if (categoria != null)
+            var subcategoria = await _context.Subcategorias.FindAsync(id);
+            if (subcategoria != null)
             {
-                _context.Categorias.Remove(categoria);
+                _context.Subcategorias.Remove(subcategoria);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoriaExists(int id)
+        private bool SubcategoriaExists(int id)
         {
-          return _context.Categorias.Any(e => e.CategoriaId == id);
+          return _context.Subcategorias.Any(e => e.SubcategoriaId == id);
         }
     }
 }

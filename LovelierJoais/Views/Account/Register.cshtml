@@ -1,4 +1,5 @@
-﻿@model LoginViewModel
+﻿@using LovelierJoais.ViewModel
+@model RegisterViewModel
 @{
     Layout = "_LayoutLogin";
 }
@@ -17,54 +18,54 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="row">
                 <div class="form-group">
-                    <label asp-for="UserName" style="color: #7E2228">Nome Completo</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="nomeCompleto" style="color: #7E2228">Nome Completo</label>
+                    <input asp-for="nomeCompleto" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="nomeCompleto" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                    <label asp-for="UserName" style="color: #7E2228">Data de Nascimento</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="dataNascimento" style="color: #7E2228">Data de Nascimento</label>
+                    <input asp-for="dataNascimento" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="dataNascimento" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                    <label asp-for="UserName" style="color: #7E2228">CPF</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="cpf" style="color: #7E2228">CPF</label>
+                    <input asp-for="cpf" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="cpf" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-2 col-md-2 col-sm-2">
-                    <label asp-for="UserName" style="color: #7E2228">DDD</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="ddd" style="color: #7E2228">DDD</label>
+                    <input asp-for="ddd" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="ddd" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-5 col-md-5 col-sm-5">
-                    <label asp-for="UserName" style="color: #7E2228">Telefone</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="PhoneNumber" style="color: #7E2228">Telefone</label>
+                    <input asp-for="PhoneNumber" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-5 col-md-5 col-sm-5">
-                    <label asp-for="UserName" style="color: #7E2228">CEP</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="cep" style="color: #7E2228">CEP</label>
+                    <input  name="cep" id="cep" class="form-control" value="" style="border-radius: 16px; border-color: #7E2228" onblur="pesquisacep(this.value)" />
+                    <span asp-validation-for="cep" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-8 col-md-8 col-sm-8">
-                    <label asp-for="UserName" style="color: #7E2228">Enderenço</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="endereco" style="color: #7E2228">Enderenço</label>
+                    <input asp-for="endereco" name="endereco" id="endereco" value="" class="form-control endereco" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="endereco" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-sm-4">
-                    <label asp-for="UserName">Bairro</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="bairro">Bairro</label>
+                    <input asp-for="bairro" name="bairro" id="bairro" value="" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="bairro" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                    <label asp-for="UserName" style="color: #7E2228">Cidade</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="cidade" style="color: #7E2228">Cidade</label>
+                    <input asp-for="cidade" name="cidade" id="cidade" value="" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="cidade" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                    <label asp-for="UserName" style="color: #7E2228">Complemento</label>
-                    <input asp-for="UserName" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="complemento" style="color: #7E2228">Complemento</label>
+                    <input asp-for="complemento" class="form-control" style="border-radius: 16px; border-color: #7E2228" />
+                    <span asp-validation-for="complemento" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="UserName" style="color: #7E2228">Email</label>
@@ -89,3 +90,73 @@
     </div>
 </div>
 
+<script>
+    function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById('endereco').value = ("");
+        document.getElementById('bairro').value = ("");
+        document.getElementById('cidade').value = ("");
+       
+    }
+
+    function meu_callback(conteudo) {
+
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('endereco').value = (conteudo.logradouro);
+            document.getElementById('bairro').value = (conteudo.bairro);
+            document.getElementById('cidade').value = (conteudo.localidade);
+           
+
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('endereco').value = "Buscando logradouro...";
+                document.getElementById('bairro').value = "Buscando bairro...";
+                document.getElementById('cidade').value = "Buscando cidade...";
+                
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+
+</script>

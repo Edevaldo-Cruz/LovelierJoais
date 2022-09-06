@@ -75,7 +75,7 @@ namespace LovelierJoais.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("LovelierJoais.Models.Pedidos", b =>
+            modelBuilder.Entity("LovelierJoais.Models.Pedido", b =>
                 {
                     b.Property<int>("PedidoId")
                         .ValueGeneratedOnAdd()
@@ -97,7 +97,7 @@ namespace LovelierJoais.Migrations
 
                     b.HasKey("PedidoId");
 
-                    b.ToTable("Pedidos");
+                    b.ToTable("Pedido");
                 });
 
             modelBuilder.Entity("LovelierJoais.Models.PedidoDetalhe", b =>
@@ -418,7 +418,7 @@ namespace LovelierJoais.Migrations
 
             modelBuilder.Entity("LovelierJoais.Models.PedidoDetalhe", b =>
                 {
-                    b.HasOne("LovelierJoais.Models.Pedidos", "Pedidos")
+                    b.HasOne("LovelierJoais.Models.Pedido", "Pedido")
                         .WithMany("PedidoItens")
                         .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -430,7 +430,7 @@ namespace LovelierJoais.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Pedidos");
+                    b.Navigation("Pedido");
 
                     b.Navigation("Produto");
                 });
@@ -510,7 +510,7 @@ namespace LovelierJoais.Migrations
                     b.Navigation("Produtos");
                 });
 
-            modelBuilder.Entity("LovelierJoais.Models.Pedidos", b =>
+            modelBuilder.Entity("LovelierJoais.Models.Pedido", b =>
                 {
                     b.Navigation("PedidoItens");
                 });

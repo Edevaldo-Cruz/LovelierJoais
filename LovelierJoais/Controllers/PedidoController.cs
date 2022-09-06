@@ -57,14 +57,14 @@ namespace LovelierJoais.Controllers
 
                 _carrinhoCompra.LimparCarrinho();
 
-                return View("~/Views/Pedidos/CheckoutCompleto.cshtml", new PedidoProdutoViewModel
+                return View("~/Views/Pedido/CheckoutCompleto.cshtml", new PedidoProdutoViewModel
                 {
                     Pedido = pedido,
                     Categorias = _categoriaRepository.Categorias
                 });
             }
 
-            return View("~/Views/Pedidos/CheckoutCompleto.cshtml", new PedidoProdutoViewModel
+            return View("~/Views/Pedido/CheckoutCompleto.cshtml", new PedidoProdutoViewModel
             {
                 Pedido = pedido,
                 Categorias = _categoriaRepository.Categorias

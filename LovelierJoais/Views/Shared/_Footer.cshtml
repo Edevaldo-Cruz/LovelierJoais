@@ -1,128 +1,72 @@
-﻿<!-- Remove the container if you want to extend the Footer to full width. -->
+﻿
+<footer class="footer-48201" style="background-color: #7E2228; padding-top: 50px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <img src="~/images/logoBlack.png" width="250" height="250" alt="Logo" />
+                <a href="#" class="footer-site-logo d-block mb-4" style="margin: 0px">Lovelier Joias</a>
+                <p style="margin-top: 0px; color: #FFF">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Eligendi quasi perferendis ratione perspiciatis accusantium.
+                </p>
 
 
-  <footer style="background-color: #F2C4C4">
-    <!-- Grid container -->
-    <div class="container p-4">
-      <!--Grid row-->
-      <div class="row my-4">
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            </div>
+            <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                    <li><a href="#" style="color: #FFF">Home</a></li>
+                    @foreach (var item in @ViewBag.Categorias)
+                    {
+                        <li><a href="#">@item.CategoriaNome</a></li>
 
-          <div >
-            <img src="~/images/logoBlack.png" height="350" alt=""
-                 loading="lazy" />
-          </div>
+                    }
 
-          <p class="text-center">Homless animal shelter The budgetary unit of the Capital City of Warsaw</p>
-
-          <ul class="list-unstyled d-flex flex-row justify-content-center">
-            <li>
-              <a class="text-white px-2" href="#!">
-                <i class="fab fa-facebook-square"></i>
-              </a>
-            </li>
-            <li>
-              <a class="text-white px-2" href="#!">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a class="text-white ps-2" href="#!">
-                <i class="fab fa-youtube"></i>
-              </a>
-            </li>
-          </ul>
-
+                </ul>
+            </div>
+            <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                    @foreach (var subcategoria in ViewBag.Subcategorias)
+                    {
+                        <li>
+                            <a asp-controller="Produto"
+                                asp-action="List"
+                                asp-route-subcategoria="@subcategoria.SubcategoriaId">
+                                <b>
+                                    @subcategoria.SubcategoriaNome
+                                </b>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Partners</a></li>
+                </ul>
+            </div>
+            <div class="col-md text-md-center">
+                <ul class="social list-unstyled">
+                    <li><a href="#"><span class="icon-instagram"></span></a></li>
+                    <li><a href="#"><span class="icon-twitter"></span></a></li>
+                    <li><a href="#"><span class="icon-facebook"></span></a></li>
+                    <li><a href="#"><span class="icon-pinterest"></span></a></li>
+                    <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                </ul>
+                <p class=""><a href="#" class="btn btn-tertiary">Contact Us</a></p>
+            </div>
         </div>
-        <!--Grid column-->
 
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4">Animals</h5>
-
-          <ul class="list-unstyled">
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>When your pet is missing</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Recently found</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>How to adopt?</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Pets for adoption</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Material gifts</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Help with walks</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Volunteer activities</a>
-            </li>
-          </ul>
+        <div class="row ">
+            <div class="col-12 text-center">
+                <div class="copyright mt-5 pt-5">
+                    <p><small>&copy; 2022 All Rights Reserved.</small></p>
+                </div>
+            </div>
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4">Animals</h5>
-
-          <ul class="list-unstyled">
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>General information</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>About the shelter</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Statistic data</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Job</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Tenders</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!" class="text-white"><i class="fas fa-paw pe-3"></i>Contact</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4">Contact</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <p><i class="fas fa-map-marker-alt pe-2"></i>Warsaw, 57 Street, Poland</p>
-            </li>
-            <li>
-              <p><i class="fas fa-phone pe-2"></i>+ 01 234 567 89</p>
-            </li>
-            <li>
-              <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@example.com</p>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-      </div>
-      <!--Grid row-->
     </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: #7E2228">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
+</footer>
 
 
-<!-- End of .container -->
+

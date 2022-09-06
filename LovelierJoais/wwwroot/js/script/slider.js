@@ -29,3 +29,5 @@ new Glider($promocaoCarousel, {
     // scrollLockDelay: 100,
     // rewind: true,
 });
+
+

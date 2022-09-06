@@ -26,7 +26,7 @@ namespace LovelierJoais.Controllers
         //Método Get
         public IActionResult Login(string returnUrl)
         {
-            ViewBag.Categorias = _categoriaRepository.Categorias;
+           
             return View(new LoginViewModel()
             {
                 ReturnUrl = returnUrl
@@ -56,7 +56,7 @@ namespace LovelierJoais.Controllers
             }
             //Usuario null ou usuario e senha incorreto
             ModelState.AddModelError("", "Falha ao realizar o login!!");
-            ViewBag.Categorias = _categoriaRepository.Categorias;
+           
             return View(loginVM);
         }
 
@@ -64,7 +64,7 @@ namespace LovelierJoais.Controllers
         public IActionResult Register()
         {
            
-            ViewBag.Categorias = _categoriaRepository.Categorias;
+           
             return View();
         }
 
@@ -93,7 +93,7 @@ namespace LovelierJoais.Controllers
                     this.ModelState.AddModelError("Registro", "Falha ao registrar o usuário");
                 }
             }
-            ViewBag.Categorias = _categoriaRepository.Categorias;
+            
             return View(registroVM);
         }
 
@@ -111,14 +111,14 @@ namespace LovelierJoais.Controllers
             await _signInManager.SignOutAsync();
 
             //Redirecionado a pagina para Home
-            ViewBag.Categorias = _categoriaRepository.Categorias;
+           
             return RedirectToAction("Index", "Home");
         }
 
         // Método para retorna View acesso negado
         public IActionResult AccessDenied()
         {
-            ViewBag.Categorias = _categoriaRepository.Categorias;
+            
             return View();
         }
         

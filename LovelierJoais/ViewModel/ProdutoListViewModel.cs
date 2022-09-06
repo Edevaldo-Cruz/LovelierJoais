@@ -8,8 +8,14 @@ namespace LovelierJoais.ViewModels
 
         public string CategoriaAtual { get; set; }
 
-        public IEnumerable<Categoria> Categorias { get; set; }      
+        public IEnumerable<Categoria> Categorias { get; set; }
 
-       
+        public IEnumerable<Produto> Produto { get; set; }
+
+        public IEnumerable<Produto> ProdutoDestaque { get; set; }
+
+        public Produto produto { get; set; }
+
+
     }
 }

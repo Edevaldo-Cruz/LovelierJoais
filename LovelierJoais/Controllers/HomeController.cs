@@ -9,13 +9,14 @@ namespace LovelierJoais.Controllers
     public class HomeController : Controller
     {
         private readonly IProdutoRepository _produtoRepository;
-
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly ISubcategoriaRepository _subcategoriaRepository;
 
-        public HomeController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
+        public HomeController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository, ISubcategoriaRepository subcategoriaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;
+            _subcategoriaRepository = subcategoriaRepository;
         }
 
         public IActionResult Index()
@@ -29,15 +30,18 @@ namespace LovelierJoais.Controllers
             var rnd = new Random();
             int index = rnd.Next(banners.Length);
             ViewBag.BannerAliatorio = banners[index];
+            
 
             var homeViewModel = new HomeViewModel
             {
-                Promocao = _produtoRepository.ProdutoPromocao,
-                Destaque = _produtoRepository.ProdutoDestaque,
-                //Categorias = _categoriaRepository.Categorias
+                ProdutoPromocao = _produtoRepository.ProdutoPromocao,
+                ProdutoDestaque = _produtoRepository.ProdutoDestaque,
+                ProdutoInfo = _produtoRepository.ProdutoInfo,
             };
-            ViewBag.Produtos = _produtoRepository.ProdutoDestaque.ToList();
+            
             ViewBag.Categorias = _categoriaRepository.Categorias;
+            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
+            ViewBag.teste = _produtoRepository.ProdutoPromocao;
             ViewBag.Scroll = "on";
             return View(homeViewModel);
         }
