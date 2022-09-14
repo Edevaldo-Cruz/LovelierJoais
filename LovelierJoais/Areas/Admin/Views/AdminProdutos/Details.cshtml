@@ -1,69 +1,102 @@
 ﻿@model LovelierJoais.Models.Produto
-
-@{
-    Layout = "_Layout";
-    ViewData["Title"] = "Details";
-}
-<div class="container">
-    <h3>Detalhes</h3>
-    <div>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.DescricaoCurta)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.DescricaoCurta)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.DescricaoDetalhada)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.DescricaoDetalhada)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Preco)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Preco)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.ImagemUrl)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.ImagemUrl)
-            </dd>            
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Estoque)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Estoque)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Categoria)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Categoria.CategoriaNome)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Subcategoria)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Subcategoria.SubcategoriaNome)
-            </dd>
-        </dl>
-    </div>
+<div class="container" style="margin-top: 20px">
+    <h4>Produto</h4>
     <hr />
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.ProdutoId">Editar</a> |
-        <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
-    </div>
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ProdutoId" />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" readonly/>
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DescricaoCurta" class="control-label"></label>
+                    <input asp-for="DescricaoCurta" class="form-control" readonly />
+                    <span asp-validation-for="DescricaoCurta" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label asp-for="Preco" class="control-label"></label>
+                    <input asp-for="Preco" class="form-control" readonly />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="DescricaoDetalhada" class="control-label"></label>
+                    <textarea asp-for="DescricaoDetalhada" class="form-control" readonly></textarea>
+                    <span asp-validation-for="DescricaoDetalhada" class="text-danger"></span>
+                </div>
+            </div>
 
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="ImagemUrl" class="control-label"></label>
+                    <input asp-for="ImagemUrl" class="form-control" readonly />
+                    <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="Estoque" class="control-label"></label>
+                        <input asp-for="Estoque" class="form-control" readonly />
+                        <span asp-validation-for="Estoque" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="CategoriaId" class="control-label"></label>
+                        <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId" readonly></select>
+                        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="SubcategoriaId" class="control-label"></label>
+                        <select asp-for="SubcategoriaId" class="form-control" asp-items="ViewBag.SubcategoriaId" readonly></select>
+                        <span asp-validation-for="SubcategoriaId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="margin: 20px">
+                <div class="row">
+                    <div class="form-group form-check col-md-4">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Destaque" disabled /> @Html.DisplayNameFor(model => model.Destaque)
+                        </label>
+                    </div>
+                    <div class="form-group form-check col-md-4">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Promocao" disabled /> @Html.DisplayNameFor(model => model.Promocao)
+                        </label>
+                    </div>
+                    <div class="form-group form-check col-md-4">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Info" disabled /> @Html.DisplayNameFor(model => model.Info)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-12">
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-2">
+                        <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.ProdutoId">Editar</a>                        
+                    </div>
+                    <div class="form-group col-md-2">
+                        <a class="btn btn-outline-primary" asp-action="Index">Voltar</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div>
+    </div>
 </div>
+
+
 

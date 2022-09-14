@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LovelierJoais.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
-    <link rel="stylesheet" href="~/css/styles.css" /> 
-
+    <link rel="stylesheet" href="~/css/styles.css" />
 
     @if (IsSectionDefined("Styles"))
     {
@@ -18,22 +17,22 @@
 </head>
 <body style="background-color: #FFF2F2">
     <header>
-         @await Html.PartialAsync("_NavBar")       
+        @await Html.PartialAsync("_NavBar")
     </header>
-    <div class="container">
-        <main role="main" class="pb-3" style="margin-bottom: 750px">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted" style="margin-top: 15px">
+    <main role="main" class="pb-3" style="margin-bottom: 610px">
+        @RenderBody()
+    </main>
+
+
+    <footer class="border-top footer text-muted">
         @await Html.PartialAsync("_Footer")
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
     <script src="~/js/script/slider.js"></script>
-    <script src="~/js/script/navBar.js"></script>   
+    <script src="~/js/script/navBar.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using LovelierJoais.Models;
 using LovelierJoais.ViewModels;
 using Newtonsoft.Json;
+using LovelierJoais.Repositories;
 
 namespace LovelierJoais.Controllers
 {
@@ -11,14 +12,17 @@ namespace LovelierJoais.Controllers
         private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
         private readonly CarrinhoCompra _carrinhoCompra;
+        private readonly ISubcategoriaRepository _subcategoriaRepository;
 
-        public CarrinhoCompraController(IProdutoRepository produtoRepository,
-                                        ICategoriaRepository categoriaRepository,
-                                        CarrinhoCompra carrinhoCompra)
+        public CarrinhoCompraController(IProdutoRepository produtoRepository, 
+                                        ICategoriaRepository categoriaRepository, 
+                                        CarrinhoCompra carrinhoCompra, 
+                                        ISubcategoriaRepository subcategoriaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;
             _carrinhoCompra = carrinhoCompra;
+            _subcategoriaRepository = subcategoriaRepository;
         }
 
         public IActionResult Index()
@@ -34,6 +38,7 @@ namespace LovelierJoais.Controllers
                 CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal(),
             };
             ViewBag.Categorias = _categoriaRepository.Categorias;
+            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
             //var list = TempData["Selecionado"] ;
             //ViewBag.selecionado = list;
 
@@ -55,7 +60,7 @@ namespace LovelierJoais.Controllers
             //            {
             //                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             //            });
-
+            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
             return RedirectToAction("Index");
         }
 

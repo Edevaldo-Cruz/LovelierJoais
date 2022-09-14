@@ -1,76 +1,67 @@
-﻿<nav class="nav-fixo">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
-                <a class="nav-div-img"
-                   asp-action="Index"
-                   asp-controller="Home"
-                   asp-route-home="Home">
-                    <img src="~/images/logo.png"
-                         width="365"
-                         height="170"
-                         alt="logo Lovelier Joias" />
-                </a>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" style=" height: 100px ">
-                        <partial name="_Login" />
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="row">
+﻿<nav class="nav-fixo">    
+    <div style="height: 100%">
+        <div class="container">            
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                    <a class="nav-div-img"
+                       asp-action="Index"
+                       asp-controller="Home"
+                       asp-route-home="Home">
+                        <img src="~/images/logo.png"
+                             width="365"
+                             height="170"
+                             alt="logo Lovelier Joias" />
+                    </a>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" style=" height: 100px ">
+                            <partial name="_Login" />
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div style="display: flex; align-items:center">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+                                        @await Component.InvokeAsync("SubcategoriaMenu")
+                                    </div>
+                                    @foreach (var item in ViewBag.Categorias)
+                                    {
+                                        if (item.Link == true)
+                                        {
+                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                                                <a asp-action="List"
+                                           asp-controller="Produto"
+                                           asp-route-categoria="@item.CategoriaId"
+                                           style="color: #FFFFFF; ">
+                                                    <b>
+                                                        @item.CategoriaNome
+                                                    </b>
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <div style="background-color:#7E2228; border-radius: 25px ">
+                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1" style="top: 25px">
+                                                <a href="admin" style="cursor: pointer" class="nav-link text-light"><b>Admin</b></a>
+                                            </div>
+                                        </div>
+                                    }
 
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
-                                @await Component.InvokeAsync("SubcategoriaMenu")
+                                </div>
                             </div>
-
-                            @foreach (var item in ViewBag.Categorias)
-                            {
-                            if(item.Link == true){
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
-
-                                <a asp-action="List"
-                                   asp-controller="Produto"
-                                   asp-route-categoria="@item.CategoriaId">
-                                    <b>
-                                        @item.CategoriaNome
-                                    </b>
-                                </a>
-
-                                @* <a class="nav-link texto-padrao"
-                                asp-controller="Produto"
-                                asp-action="List"
-                                asp-route-subcategoria="@item.CategoriaId">
-                                <b>@item.CategoriaNome</b>
-                                </a>*@
-
-                            </div>
-
-                            }
-                            }                          
-
-                            @if(User.IsInRole("Admin"))
-                            {
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
-                                <a href="admin" style="cursor: pointer" class="nav-link text-light"><b>Admin</b></a>
-                            </div>
-                            }
-
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
-                                <span class="nav-link" href="#">
-                                    @await Component.InvokeAsync("CarrinhoCompraResumo")
-                                </span>
-                            </div>
-
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-
-
     </div>
+
+
+
+
 </nav>
 
 

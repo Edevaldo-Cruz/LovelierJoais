@@ -70,12 +70,18 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Subcategoria.SubcategoriaNome)
                             </td>
-                            <td class="row">
-                                <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-primary">
-                                    <img src="~/images/edit.png" alt="icone editar" width="30" height="30"/>
-                                </a>
-                                <a asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Detalhes</a>
-                                <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-outline-secondary">Deleta</a>
+                            <td>
+                                <div style="display:flex; justify-content:center; align-items: center">
+                                    <a style="margin: 2px" asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-primary">
+                                        <img src="~/images/edit.png" alt="icone editar" width="30" height="30" />
+                                    </a>
+                                    <a  asp-action="Details" asp-route-id="@item.ProdutoId" class="btn btn-secondary">
+                                        <img src="~/images/Details.png" alt="icone detalhes" width="30" height="30" />
+                                    </a>
+                                    <a style="margin: 2px" asp-action="Delete" asp-route-id="@item.ProdutoId" class=" btn btn-danger">
+                                        <img src="~/images/del.png" alt="icone deletar" width="30" height="30" />
+                                    </a>
+                                </div>                                
                             </td>
                         </tr>
                     }

@@ -32,7 +32,7 @@ namespace LovelierJoais.Areas.Admin.Controllers
                 resultado = resultado.Where(p => p.Nome.Contains(filter));                
             }
 
-            var model = await PagingList.CreateAsync(resultado, 4, pageindex, sort, "Nome");
+            var model = await PagingList.CreateAsync(resultado, 8, pageindex, sort, "Nome");
             model.RouteValue = new RouteValueDictionary { { "filter", filter } };
             return View(model);
         }
@@ -68,7 +68,7 @@ namespace LovelierJoais.Areas.Admin.Controllers
         // POST: Admin/AdminLanches/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,Destaque,Promocao,Estoque,CategoriaId, SubcategoriaId")] Produto produto)
+        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,Destaque,Promocao,Info,Estoque,CategoriaId, SubcategoriaId")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace LovelierJoais.Areas.Admin.Controllers
         // POST: Admin/AdminLanches/Edit/5       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,Destaque,Promocao,Estoque,CategoriaId, SubcategoriaId")] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,DescricaoCurta,DescricaoDetalhada,Preco,ImagemUrl,Destaque,Promocao,Info,Estoque,CategoriaId, SubcategoriaId")] Produto produto)
         {
             if (id != produto.ProdutoId)
             {

@@ -1,79 +1,63 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
-
-
-    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+<form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
       method="post" class="navbar-left">
-        <div class="row" style="margin-top: 35px; margin-left: auto; margin-right: auto">            
-            <div class="col">
-                <form asp-controller="Produto" asp-action="Search" method="get">
-                    <div class="nav-div-icone-usuario">
-                        <div class="input-group mb-3 nav-div-usuario">
-                            <input type="text" class="form-control nav-input"
+    <div class="row" style="margin-top: 35px; margin-left: auto; margin-right: auto">
+        <div class="col">
+            <form asp-controller="Produto" asp-action="Search" method="get">
+                <div class="nav-div-icone-usuario">
+                    <div class="input-group nav-div-usuario">
+                        <input style="width: 80%" id="pesquisa" type="text" class="form-control nav-input"
                                placeholder="##Rosana colocar uma frase boa aqui##"
-                               aria-label="Recipiente para nickname"
-                               aria-describedby="basic-addon2"
                                name="searchString" value="@ViewData["searchString"]" />
-                            <div class="input-group-append">
-
-                                <img class="float-end icone-lupa"
+                        <div class="input-group-append">
+                            <img class="float-end icone-lupa"
                                  src="~/images/lupa.png"
                                  width="45" height="45"
                                  alt="icone usuario" />
-                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1" style="margin-top: 10px; padding: 0px">
-                <a>
-                    <img src="~/images/user.png"
+                </div>
+            </form>
+        </div>
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1" style="margin-top: 10px; padding: 0px">            
+                <img src="~/images/user.png"
                      width="35"
                      height="35"
-                     alt="icone usuario" />
-                </a>
-            </div>
+                     alt="icone usuario" />           
+        </div>
 
-            @if (SignInManager.IsSignedIn(User))
-            {
+        @if (SignInManager.IsSignedIn(User))
+        {
 
-            <div class="nav-div-padrao col-xl-3 col-lg-3 col-md-3 col-sm-3" style="margin-top: 15px; padding: 0px; margin-left: -35px">
+            <div class="nav-div-padrao col-xl-1 col-lg-1 col-md-3 col-sm-1" style="margin-top: 15px; padding: 0px; margin-left: -35px">
                 <p class="col" style="color:#FFF"><b>@User.Identity.Name &nbsp;</b></p>
             </div>
-            <div class="nav-div-padrao col" style="margin-top: 10px; padding: 0px; margin-left: -95px">
+            <div class="nav-div-padrao col" style="margin-top: 10px; padding: 0px; margin-left: 48px">
                 <button type="submit" style="border:none!important; background: transparent!important;">
-                    <a>
-                        <img src="~/images/off.png"
-                         width="25"
-                         height="25"
-                         alt="icone seta acesse sua conta" />
-                    </a>
+                    <img src="~/images/off.png"
+                     width="25"
+                     height="25"
+                     alt="icone seta acesse sua conta" />
                 </button>
             </div>
         }
         else
         {
-             <div class="nav-div-padrao col-xl-3 col-lg-3 col-md-3 col-sm-3" style="margin-top: 15px; padding: 0px; margin-left: -35px">
+            <div class="nav-div-padrao col-xl-2 col-lg-2 col-md-2 col-sm-2" style="margin-top: 15px; padding: 0px; margin-left: -35px">
                 <a asp-controller="Account"
-                    asp-action="Login"
-                    asp-route-returnUrl="@string.Format("{0}{1}"
+               asp-action="Login"
+               asp-route-returnUrl="@string.Format("{0}{1}"
                     ,Context.Request.Path
-                    ,Context.Request.QueryString)" 
-                    class="texto-padrao">
-                        <p>Olá Visitante!<b> Acesse sua conta</b></p>                         
+                    ,Context.Request.QueryString)"
+               class="texto-padrao">
+                    <b>Acesse sua conta</b>
                 </a>
-             </div>
-             <div class="nav-div-padrao col" style="margin-top: 14px; padding: 0px; margin-left: -15px">
-                <a>
-                    <img src="~/images/arrowDown.png"
-                     width="25"
-                     height="25"
-                     alt="icone seta acesse sua conta" />
-                </a>
-            </div>
+            </div>           
         }
-        </div>
-       
-    </form>
+    </div>
+
+</form>
+
 

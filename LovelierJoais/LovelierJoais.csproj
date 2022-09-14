@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_CardsInfo.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.8" />
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.18.0" />

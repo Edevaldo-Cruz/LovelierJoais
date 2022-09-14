@@ -29,6 +29,7 @@ namespace LovelierJoais.Controllers
             {
                 produtos = (IEnumerable<Produto>)_produtoRepository.Produtos.OrderBy(l => l.ProdutoId);
                 subcategoriaAtual = "Todos os Produtos";
+
             }
             else if (!string.IsNullOrEmpty(subcategoria) && string.IsNullOrEmpty(categoria))
             {
@@ -50,14 +51,15 @@ namespace LovelierJoais.Controllers
             {
                 Produtos = produtos,
                 CategoriaAtual = subcategoriaAtual,
-                Categorias = _categoriaRepository.Categorias
+                Categorias = _categoriaRepository.Categorias,                
+                produto = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId)
 
             };
 
             ViewBag.Destaque = _produtoRepository.ProdutoDestaque.ToList();
             ViewBag.Categorias = _categoriaRepository.Categorias;
             ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
-            //ViewBag.Selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+            ViewBag.Selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
             return View(ProdutoListViewModel);
         }
 
@@ -65,7 +67,7 @@ namespace LovelierJoais.Controllers
         {
             var ProdutoListViewModel = new ProdutoListViewModel
             {
-                //Categorias = _categoriaRepository.Categorias
+                Categorias = _categoriaRepository.Categorias,
                 produto = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId)
             };
             ViewBag.Selecionado = _produtoRepository.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);

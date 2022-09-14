@@ -21,11 +21,17 @@ namespace LovelierJoais.Controllers
 
         public IActionResult Index()
         {
+            //string[] banners = {
+            //    "/images/banner1.png",
+            //    "/images/banner2.png",
+            //    "/images/banner3.png",
+            //    "/images/banner4.png",               
+            //};
             string[] banners = {
-                "/images/banner1.png",
-                "/images/banner2.png",
-                "/images/banner3.png",
-                "/images/banner4.png",               
+                "/images/ban1.jpg",
+                "/images/ban2.jpg",
+                "/images/ban3.jpg",
+                "/images/ban4.jpg",
             };
             var rnd = new Random();
             int index = rnd.Next(banners.Length);
@@ -40,8 +46,7 @@ namespace LovelierJoais.Controllers
             };
             
             ViewBag.Categorias = _categoriaRepository.Categorias;
-            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;
-            ViewBag.teste = _produtoRepository.ProdutoPromocao;
+            ViewBag.Subcategorias = _subcategoriaRepository.Subcategorias;            
             ViewBag.Scroll = "on";
             return View(homeViewModel);
         }

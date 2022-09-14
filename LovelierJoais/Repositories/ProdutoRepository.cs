@@ -25,6 +25,10 @@ namespace LovelierJoais.Repositories
                                     Where(d => d.Destaque).
                                     Include(d => d.Categoria);
 
+        public IEnumerable<Produto> Destaque => _context.Produtos.
+                                   Where(d => d.Destaque).
+                                   Include(d => d.Categoria);
+
         public IEnumerable<Produto> ProdutoInfo => _context.Produtos.
                                     Where(i => i.Info).
                                     Include(i => i.Categoria);
